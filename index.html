@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nelson  Lewis Munene</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ----- RESET & VARIABLES ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    :root {
+      --bg-primary: #020617;
+      --bg-secondary: #0f172a;
+      --bg-card: #1e293b;
+      --text-primary: #e2e8f0;
+      --text-secondary: #94a3b8;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.3);
+      --border: #334155;
+      --card-shadow: 0 20px 30px -10px rgba(0,0,0,0.6);
+      --glass-bg: rgba(15, 23, 42, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    body.light {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #e2e8f0;
+      --bg-card: #ffffff;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --accent: #0284c7;
+      --accent-glow: rgba(2, 132, 199, 0.2);
+      --border: #cbd5e1;
+      --card-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+      --glass-bg: rgba(255, 255, 255, 0.7);
+      --glass-border: rgba(0, 0, 0, 0.1);
+    }
+
+    section {
+      padding: 5rem 1.5rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    h2:after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--accent);
+      margin: 1rem auto 0;
+      border-radius: 4px;
+    }
+
+    /* header */
+    header {
+      text-align: center;
+      padding: 6rem 1.5rem;
+      background: radial-gradient(circle at 70% 30%, var(--bg-secondary), var(--bg-primary));
+      border-bottom: 1px solid var(--border);
+    }
+    header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent);
+      box-shadow: 0 0 30px var(--accent-glow);
+      margin-bottom: 1.5rem;
+    }
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--accent), #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    /* navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      background: color-mix(in srgb, var(--bg-primary) 80%, transparent);
+      backdrop-filter: blur(12px);
+      padding: 1rem;
+      text-align: center;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+    nav a {
+      margin: 0 1.2rem;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      border: 1px solid transparent;
+      transition: 0.2s;
+    }
+    nav a:hover, nav a.active {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    nav a.active {
+      background: var(--glass-bg);
+      backdrop-filter: blur(4px);
+      border: 1px solid var(--glass-border);
+    }
+
+    /* buttons - with specific colors */
+    .btn {
+      display: inline-block;
+      font-weight: 600;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: 0.3s;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 5px 15px var(--accent-glow);
+    }
+    .btn-green {
+      background: #10b981; /* green */
+      color: #020617;
+    }
+    .btn-green:hover {
+      background: #059669;
+      transform: scale(1.05);
+    }
+    .btn-red {
+      background: #ef4444; /* red */
+      color: #020617;
+    }
+    .btn-red:hover {
+      background: #dc2626;
+      transform: scale(1.05);
+    }
+
+    /* cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .card {
+      background: var(--bg-card);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      transition: 0.3s;
+      border: 1px solid var(--border);
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: var(--card-shadow);
+      border-color: var(--accent);
+    }
+    .card img, .card video, .card iframe {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 1px solid var(--border);
+    }
+    .card .content {
+      padding: 1.5rem;
+    }
+
+    /* GitHub repo card  */
+    .github-repo {
+      background: var(--bg-card);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+    }
+    .github-repo h4 a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .github-repo p {
+      color: var(--text-secondary);
+    }
+
+    /* skills pills */
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .skill {
+      background: var(--bg-card);
+      padding: 0.7rem 1.5rem;
+      border-radius: 40px;
+      border: 1px solid var(--border);
+      transition: 0.2s;
+    }
+    .skill:hover {
+      background: var(--accent);
+      color: #020617;
+      transform: scale(1.05);
+    }
+
+    /* timeline */
+    .timeline {
+      border-left: 3px solid var(--accent);
+      padding-left: 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .timeline-item {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .timeline-item:before {
+      content: '';
+      width: 14px;
+      height: 14px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      left: -2.4rem;
+      top: 0.4rem;
+      border: 2px solid var(--bg-primary);
+    }
+
+    /* certifications grid */
+    .certs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .cert {
+      background: var(--bg-card);
+      padding: 1.5rem;
+      border-radius: 1.5rem;
+      border: 1px solid var(--border);
+      min-width: 200px;
+      text-align: center;
+    }
+    .cert i {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    /* contact form */
+    .contact-form {
+      max-width: 600px;
+      margin: 2rem auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-form input, .contact-form textarea {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      border-radius: 16px;
+      color: var(--text-primary);
+    }
+    .contact-form button {
+      background: var(--accent);
+      border: none;
+      padding: 1rem;
+      border-radius: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* blog modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: var(--bg-card);
+      padding: 2rem;
+      border-radius: 2rem;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .modal .close {
+      float: right;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    /* github skeleton */
+    .skeleton {
+      background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-secondary) 50%, var(--bg-card) 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+      height: 200px;
+      border-radius: 1.5rem;
+    }
+    @keyframes loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* toggle button */
+    .toggle {
+      position: fixed;
+      right: 25px;
+      top: 25px;
+      background: var(--bg-card);
+      color: var(--text-primary);
+      padding: 0.8rem 1.2rem;
+      border-radius: 40px;
+      cursor: pointer;
+      z-index: 1100;
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    /* ADMIN PANEL */
+    .login-container {
+      max-width: 400px;
+      margin: 4rem auto;
+      background: var(--bg-card);
+      padding: 2.5rem;
+      border-radius: 2rem;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+    .login-container h3 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .login-container input {
+      width: 100%;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      color: var(--text-primary);
+    }
+    .login-container button {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 1rem;
+      background: var(--accent);
+      border: none;
+      border-radius: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .login-container .error {
+      color: #ef4444;
+      margin-top: 0.5rem;
+    }
+
+    .admin-panel {
+      background: var(--bg-card);
+      border-radius: 2rem;
+      padding: 2.5rem;
+      margin: 3rem auto;
+      border: 2px dashed var(--accent);
+      display: none;
+    }
+    .admin-panel.visible {
+      display: block;
+    }
+    .admin-panel h3 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .admin-form {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .admin-form input, .admin-form textarea {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      border-radius: 16px;
+      color: var(--text-primary);
+    }
+    .admin-form button {
+      background: var(--accent);
+      border: none;
+      padding: 1rem;
+      border-radius: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .logout-btn {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 0.5rem 1.5rem;
+      border-radius: 40px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <div class="toggle" onclick="toggleMode()"><i class="fas fa-adjust"></i> Light / Dark</div>
+
+  <header>
+    <img src="assets/images/profilepic.jpg" alt="Nelson Munene" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\' viewBox=\'0 0 150 150\'%3E%3Crect width=\'150\' height=\'150\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'20\'%3ENelson%3C/text%3E%3C/svg%3E'">
+    <h1>Nelson Lewis Munene</h1>
+    <p><i class="fas fa-code"></i> Senior Developer · Media & Communication· Student Pilot · Fiction Author</p>
+    <!-- Hire Me button  -->
+    <a href="#contact" class="btn btn-green"><i class="fas fa-paper-plane"></i> Hire Me</a>
+  </header>
+  <nav>
+    <a href="#about" class="nav-link">About Me </a>
+    <a href="#skills" class="nav-link">Skills</a>
+    <a href="#portfolio" class="nav-link">Portfolio</a>
+    <a href="#github" class="nav-link">GitHub</a>
+    <a href="#journey" class="nav-link">Journey</a>
+    <a href="#aviation" class="nav-link">Aviation</a>
+    <a href="#certs" class="nav-link">Certifications</a>
+    <a href="#testimonials" class="nav-link">Testimonials</a>
+    <a href="#blog" class="nav-link">Writing</a>
+    <a href="#contact" class="nav-link">Contact</a>
+    <a href="#" onclick="showLogin()" style="color:var(--accent);">Admin</a>
+  </nav>
+
+  <!-- About Section  -->
+  <section id="about">
+    <h2>About Me</h2>
+    <div style="text-align:center; max-width:900px; margin:0 auto; font-size:1.2rem">
+      <p>I hold a <strong>Bachelor’s degree in Mass Media and Communication (with IT) </strong> from Mount Kenya University, which laid the foundation for my diverse expertise. I specialize in <strong>Graphics design, motion graphics and 3D modelling</strong>, bringing visual stories to life with depth and motion. My technical toolkit includes <strong>SEO and digital web optimization, digital media management and creation</strong>, ensuring that every site I build is not only beautiful but also discoverable and fast. I’m equally skilled in both <strong>linear and non-linear editing</strong>, allowing me to shape narratives across traditional broadcast and modern digital platforms. Writing is another core pillar—whether it’s scripts, articles, or books, I believe words carry as much weight as visuals. By blending IT, media, aviation, and storytelling, I move seamlessly from full‑stack systems to cinematic edits.</p>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Core Skills</h2>
+    <div class="skills">
+      <div class="skill">Web Dev</div><div class="skill">Graphic Design</div>
+      <div class="skill">Video Editing</div><div class="skill">Animation</div>
+      <div class="skill">UI/UX</div><div class="skill">Cloud Systems</div>
+      <div class="skill">Broadcasting</div><div class="skill">Script Writing</div>
+      <div class="skill">Sound Engineering</div><div class="skill">PPL</div>
+      <div class="skill">Motion Graphics</div><div class="skill">3D Modelling</div>
+      <div class="skill">SEO</div><div class="skill">Digital Optimization</div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio">
+    <h2>Portfolio</h2>
+    <h3><i class="fas fa-paint-brush"></i> Graphics</h3>
+    <div class="grid" id="graphics-grid">
+      <div class="card"><img src="assets/images/design1.jpg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'200\' viewBox=\'0 0 400 200\'%3E%3Crect width=\'400\' height=\'200\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'24\'%3EDesign 1%3C/text%3E%3C/svg%3E'"></div>
+      <div class="card"><img src="assets/images/design2.jpg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'200\' viewBox=\'0 0 400 200\'%3E%3Crect width=\'400\' height=\'200\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'24\'%3EDesign 2%3C/text%3E%3C/svg%3E'"></div>
+    <div class="card"><img src="assets/images/design3.jpg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'200\' viewBox=\'0 0 400 200\'%3E%3Crect width=\'400\' height=\'200\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'24\'%3EDesign 1%3C/text%3E%3C/svg%3E'"></div>
+      <div class="card"><img src="assets/images/design4.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'200\' viewBox=\'0 0 400 200\'%3E%3Crect width=\'400\' height=\'200\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'24\'%3EDesign 2%3C/text%3E%3C/svg%3E'"></div>
+    <div class="card"><img src="assets/images/design5.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'200\' viewBox=\'0 0 400 200\'%3E%3Crect width=\'400\' height=\'200\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'24\'%3EDesign 1%3C/text%3E%3C/svg%3E'"></div>
+      <div class="card"><img src="assets/images/design6.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'200\' viewBox=\'0 0 400 200\'%3E%3Crect width=\'400\' height=\'200\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'24\'%3EDesign 2%3C/text%3E%3C/svg%3E'"></div>
+    <div class="card"><img src="assets/images/design7.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'200\' viewBox=\'0 0 400 200\'%3E%3Crect width=\'400\' height=\'200\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'24\'%3EDesign 1%3C/text%3E%3C/svg%3E'"></div>
+      <div class="card"><img src="assets/images/design8.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'200\' viewBox=\'0 0 400 200\'%3E%3Crect width=\'400\' height=\'200\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'24\'%3EDesign 2%3C/text%3E%3C/svg%3E'"></div>
+    
+    </div>
+
+    <h3><i class="fas fa-film"></i> Motion Graphics</h3>
+    <div class="grid" id="motion-grid">
+      <div class="card"><video controls><source src="assets/videos/motion1.mp4" type="video/mp4">Your browser does not support video.</video></div>
+      <div class="card"><video controls><source src="assets/videos/motion2.mp4" type="video/mp4">Your browser does not support video.</video></div>
+    <div class="card"><video controls><source src="assets/videos/motion3.mp4" type="video/mp4">Your browser does not support video.</video></div>
+      <div class="card"><video controls><source src="assets/videos/motion4.mp4" type="video/mp4">Your browser does not support video.</video></div>
+   
+    </div>
+
+    <h3><i class="fab fa-youtube"></i> Videos</h3>
+    <div class="grid" id="video-grid">
+      <div class="card"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe></div>
+      <div class="card"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe></div>
+   <div class="card"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe></div>
+      <div class="card"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe></div>
+   
+    </div>
+
+    <!-- dynamic projects added via admin -->
+    <div id="dynamic-projects" class="grid" style="margin-top:2rem"></div>
+  </section>
+
+  <!-- GitHub Projects with skeleton -->
+  <section id="github">
+    <h2><i class="fab fa-github"></i> Live GitHub Projects</h2>
+    <div id="github-grid" class="grid"></div>
+    <p style="text-align:center; margin-top:1rem;"><small> My Repos are auto‑fetched from GitHub (username: <span id="gh-username">devnepsea</span>)</small></p>
+  </section>
+
+  <!-- Journey -->
+  <section id="journey">
+    <h2>Professional Journey</h2>
+    <div class="timeline">
+      <div class="timeline-item"><h4>🎓 Graduate – Mass Media and Communication  ( with IT option)</h4><p>Mount Kenya University</p></div>
+      <div class="timeline-item"><h4>✈️ Student Pilot (PPL)</h4><p>Proactive School of Aviation</p></div>
+      <div class="timeline-item"><h4>💻 Full‑Stack Developer</h4><p>Freelance & enterprise</p></div>
+      <div class="timeline-item"><h4>📖 Author & Book Writer</h4><p>“This Bird is Crazy ” </p></div>
+      <div class="timeline-item"><h4>📡 Media Professional</h4><p>Broadcast &  Media production</p></div>
+    </div>
+  </section>
+
+  <!-- Aviation Section -->
+  <section id="aviation">
+    <h2><i class="fas fa-plane"></i> Aviation Journey</h2>
+    <div style="text-align:center; max-width:700px; margin:0 auto;">
+      <p>Student Pilot pursuing Private Pilot License (PPL) at Proactive School of Aviation. Passionate about flying and integrating technology with aviation. Currently logging hours towards cross-country endorsement.</p>
+      <div style="margin-top:2rem; display:flex; justify-content:center; gap:2rem; flex-wrap:wrap;">
+        <div><i class="fas fa-clock" style="color:var(--accent);"></i> 15+ Flight Hours</div>
+        <div><i class="fas fa-map-marked-alt" style="color:var(--accent);"></i> 2 Cross-Country</div>
+        <div><i class="fas fa-cloud-sun" style="color:var(--accent);"></i> VFR Rated</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications & Awards -->
+  <section id="certs">
+    <h2><i class="fas fa-certificate"></i> Certifications</h2>
+    <div class="certs">
+      <div class="cert"><i class="fas fa-graduation-cap"></i><h4>B.A. Mass Media ( second class upper division )</h4><p>Mount Kenya University</p></div>
+      <div class="cert"><i class="fas fa-plane"></i><h4>Student Pilot (PPL)</h4><p>Proactive School of Aviation</p></div>
+      <div class="cert"><i class="fas fa-code"></i><h4>Full-Stack Developer</h4><p>FreeCodeCamp</p></div>
+      <div class="cert"><i class="fas fa-video"></i><h4>Adobe Certified</h4><p>Premiere Pro, Blender, Illustrator, after effects, indesign </p></div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <h2><i class="fas fa-quote-right"></i> Testimonials</h2>
+    <div class="grid">
+      <div class="card"><div class="content">"Nelson's motion graphics brought our brand to life. Exceptional creativity!" <br>— <strong>Jane Kamau, Creative Director HALA GROUP OF COMPANIES </strong></div></div>
+      <div class="card"><div class="content">"A brilliant developer with a keen eye for design. Delivered beyond expectations." <br>— <strong>Mark Ochieng, Tech Lead Moringa school </strong></div></div>
+      <div class="card"><div class="content">"His writing is captivating and technically sound. A true storyteller." <br>— <strong>Joash onsare , Editor TV 47 </strong></div></div>
+    </div>
+  </section>
+
+  <!-- Blog / Writing -->
+  <section id="blog">
+    <h2><i class="fas fa-feather"></i> Writing & Publications</h2>
+    <div id="blog-posts" class="grid"></div>
+  </section>
+
+  <!-- Contact with Form -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <form class="contact-form" action="https://formspree.io/f/your-endpoint" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <p style="text-align:center; margin-top:2rem;">Or email directly: <a href="mailto:lewisnepsea@gmail.com" style="color:var(--accent);">lewisnepsea@gmail.com</a></p>
+    <!-- Download CV button - now red -->
+    <a href="path/to/your-cv.pdf" class="btn btn-red" style="display:block; width:200px; margin:2rem auto; text-align:center;" download><i class="fas fa-download"></i> Download CV</a>
+  </section>
+
+  <!-- Admin Login Section -->
+  <section id="login-section" style="display: none; max-width:500px; margin:0 auto;">
+    <div class="login-container">
+      <h3><i class="fas fa-lock"></i> Admin Login</h3>
+      <input type="text" id="username" placeholder="Username" value="admin">
+      <input type="password" id="password" placeholder="Password">
+      <button onclick="performLogin()">Login</button>
+      <p class="error" id="login-error"></p>
+      <p style="margin-top:1rem;">(password is only set by the developer )</p>
+    </div>
+  </section>
+
+  <!-- Admin Panel -->
+  <section id="admin-section" style="max-width:900px; margin:0 auto;">
+    <div id="admin-panel" class="admin-panel">
+      <h3><i class="fas fa-crown"></i> Admin upload</h3>
+      <div class="admin-form">
+        <h4>➕ Add project</h4>
+        <input type="text" id="proj-title" placeholder="Project title">
+        <textarea id="proj-desc" placeholder="Short description"></textarea>
+        <input type="url" id="proj-image" placeholder="Image URL (optional)">
+        <button onclick="addProject()">Publish</button>
+      </div>
+      <div class="admin-form">
+        <h4>📝 Add blog post</h4>
+        <input type="text" id="blog-title" placeholder="Post title">
+        <textarea id="blog-content" placeholder="Post content"></textarea>
+        <button onclick="addBlogPost()">Publish</button>
+      </div>
+      <div class="admin-form">
+        <h4>GitHub username</h4>
+        <input type="text" id="github-user-input" value="nelson-munene">
+        <button onclick="updateGitHubUsername()">Update</button>
+      </div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </section>
+
+  <!-- Blog Modal -->
+  <div id="blogModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h3 id="modal-title"></h3>
+      <p id="modal-content"></p>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Nelson  Lewis Munene  Portfolio. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Toggle dark mode
+    function toggleMode() { document.body.classList.toggle('light'); }
+
+    // Admin login
+    function showLogin() {
+      document.getElementById('login-section').style.display = 'block';
+      document.getElementById('admin-panel').classList.remove('visible');
+    }
+    function performLogin() {
+      const user = document.getElementById('username').value;
+      const pwd = document.getElementById('password').value;
+      if (user === 'admin' && pwd === 'admin123') {
+        document.getElementById('login-section').style.display = 'none';
+        document.getElementById('admin-panel').classList.add('visible');
+      } else {
+        document.getElementById('login-error').innerText = 'Invalid credentials';
+      }
+    }
+    function logout() {
+      document.getElementById('admin-panel').classList.remove('visible');
+      document.getElementById('login-section').style.display = 'none';
+    }
+
+    // LocalStorage keys
+    const PROJECTS_KEY = 'nelson_projects';
+    const BLOGS_KEY = 'nelson_blogs';
+    const GITHUB_USER_KEY = 'nelson_github_user';
+
+    // Render projects from localStorage
+    function renderProjects() {
+      const projects = JSON.parse(localStorage.getItem(PROJECTS_KEY)) || [];
+      const container = document.getElementById('dynamic-projects');
+      if (projects.length === 0) {
+        container.innerHTML = '';
+        return;
+      }
+      let html = '';
+      projects.forEach(p => {
+        html += `<div class="card"><div class="content"><h4>${p.title}</h4><p>${p.desc}</p>${p.image ? `<img src="${p.image}" style="height:150px; object-fit:cover; border-radius:12px; margin-top:10px">` : ''}</div></div>`;
+      });
+      container.innerHTML = html;
+    }
+
+    // Render blog posts
+    function renderBlogs() {
+      const blogs = JSON.parse(localStorage.getItem(BLOGS_KEY)) || [];
+      const container = document.getElementById('blog-posts');
+      if (blogs.length === 0) {
+        container.innerHTML = `<div class="card"><div class="content"><h4>No posts yet</h4><p>Admin can add via panel.</p></div></div>`;
+        return;
+      }
+      let html = '';
+      blogs.forEach((b, index) => {
+        // Escape quotes for modal
+        const titleSafe = b.title.replace(/'/g, "\\'");
+        const contentSafe = b.content.replace(/'/g, "\\'");
+        html += `<div class="card" onclick="openModal('${titleSafe}', '${contentSafe}')"><div class="content"><h4>${b.title}</h4><p>${b.content.substring(0, 50)}...</p></div></div>`;
+      });
+      container.innerHTML = html;
+    }
+
+    // Add project
+    function addProject() {
+      const title = document.getElementById('proj-title').value.trim();
+      const desc = document.getElementById('proj-desc').value.trim();
+      const image = document.getElementById('proj-image').value.trim();
+      if (!title || !desc) { alert('Title and description required'); return; }
+      const projects = JSON.parse(localStorage.getItem(PROJECTS_KEY)) || [];
+      projects.push({ title, desc, image });
+      localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
+      renderProjects();
+      document.getElementById('proj-title').value = '';
+      document.getElementById('proj-desc').value = '';
+      document.getElementById('proj-image').value = '';
+    }
+
+    // Add blog post
+    function addBlogPost() {
+      const title = document.getElementById('blog-title').value.trim();
+      const content = document.getElementById('blog-content').value.trim();
+      if (!title || !content) { alert('Title and content required'); return; }
+      const blogs = JSON.parse(localStorage.getItem(BLOGS_KEY)) || [];
+      blogs.push({ title, content });
+      localStorage.setItem(BLOGS_KEY, JSON.stringify(blogs));
+      renderBlogs();
+      document.getElementById('blog-title').value = '';
+      document.getElementById('blog-content').value = '';
+    }
+
+    // GitHub fetch with skeleton
+    async function fetchGitHubRepos() {
+      const username = localStorage.getItem(GITHUB_USER_KEY) || 'nelson-munene';
+      document.getElementById('gh-username').innerText = username;
+      const grid = document.getElementById('github-grid');
+      grid.innerHTML = '<div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>';
+      try {
+        const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
+        if (!res.ok) throw new Error('User not found');
+        const repos = await res.json();
+        if (repos.length === 0) { grid.innerHTML = '<p>No public repos found.</p>'; return; }
+        let html = '';
+        repos.forEach(repo => {
+          html += `<div class="card github-repo"><h4><a href="${repo.html_url}" target="_blank" style="color:var(--accent);">${repo.name}</a></h4><p>${repo.description || 'No description'}</p><p><i class="fas fa-star"></i> ${repo.stargazers_count}  <i class="fas fa-code-branch"></i> ${repo.forks_count}</p></div>`;
+        });
+        grid.innerHTML = html;
+      } catch (e) {
+        grid.innerHTML = '<p style="color:red;">Could not load repos. Set correct username in admin.</p>';
+      }
+    }
+
+    function updateGitHubUsername() {
+      const newUser = document.getElementById('github-user-input').value.trim();
+      if (newUser) {
+        localStorage.setItem(GITHUB_USER_KEY, newUser);
+        fetchGitHubRepos();
+      }
+    }
+
+    // Modal functions
+    function openModal(title, content) {
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-content').innerText = content;
+      document.getElementById('blogModal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('blogModal').style.display = 'none';
+    }
+
+    // Active nav highlight
+    function setActiveNav() {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-link');
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href').substring(1);
+        if (href === current) link.classList.add('active');
+      });
+    }
+    window.addEventListener('scroll', setActiveNav);
+    window.addEventListener('load', setActiveNav);
+
+    // Initial load
+    renderProjects();
+    renderBlogs();
+    fetchGitHubRepos();
+    document.getElementById('github-user-input').value = localStorage.getItem(GITHUB_USER_KEY) || 'nelson-munene';
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) closeModal();
+    }
+  </script>
+</body>
+</html>
