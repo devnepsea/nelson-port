@@ -589,7 +589,7 @@
   <!-- Contact with Form -->
   <section id="contact">
     <h2>Contact</h2>
-    <form class="contact-form" action="https://formspree.io/f/your-endpoint" method="POST">
+    <form class="contact-form" action="https://formspree.io/f/xjgazvgy" method="POST">
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
       <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
@@ -631,7 +631,7 @@
       </div>
       <div class="admin-form">
         <h4>GitHub username</h4>
-        <input type="text" id="github-user-input" value="nelson-munene">
+        <input type="text" id="github-user-input" value="devnepsea">
         <button onclick="updateGitHubUsername()">Update</button>
       </div>
       <button class="logout-btn" onclick="logout()">Logout</button>
@@ -743,7 +743,7 @@
 
     // GitHub fetch with skeleton
     async function fetchGitHubRepos() {
-      const username = localStorage.getItem(GITHUB_USER_KEY) || 'nelson-munene';
+      const username = localStorage.getItem(GITHUB_USER_KEY) || 'devnepsea';
       document.getElementById('gh-username').innerText = username;
       const grid = document.getElementById('github-grid');
       grid.innerHTML = '<div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>';
