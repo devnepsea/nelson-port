@@ -1,829 +1,356 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nelson  Lewis Munene</title>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    /* ----- RESET & VARIABLES ----- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      scroll-behavior: smooth;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    :root {
-      --bg-primary: #020617;
-      --bg-secondary: #0f172a;
-      --bg-card: #1e293b;
-      --text-primary: #e2e8f0;
-      --text-secondary: #94a3b8;
-      --accent: #38bdf8;
-      --accent-glow: rgba(56, 189, 248, 0.3);
-      --border: #334155;
-      --card-shadow: 0 20px 30px -10px rgba(0,0,0,0.6);
-      --glass-bg: rgba(15, 23, 42, 0.7);
-      --glass-border: rgba(255, 255, 255, 0.1);
-    }
-
-    body.light {
-      --bg-primary: #f8fafc;
-      --bg-secondary: #e2e8f0;
-      --bg-card: #ffffff;
-      --text-primary: #0f172a;
-      --text-secondary: #334155;
-      --accent: #0284c7;
-      --accent-glow: rgba(2, 132, 199, 0.2);
-      --border: #cbd5e1;
-      --card-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
-      --glass-bg: rgba(255, 255, 255, 0.7);
-      --glass-border: rgba(0, 0, 0, 0.1);
-    }
-
-    section {
-      padding: 5rem 1.5rem;
-      max-width: 1300px;
-      margin: 0 auto;
-    }
-
-    h2 {
-      font-size: 2.5rem;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 3rem;
-      position: relative;
-    }
-    h2:after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: var(--accent);
-      margin: 1rem auto 0;
-      border-radius: 4px;
-    }
-
-    /* header */
-    header {
-      text-align: center;
-      padding: 6rem 1.5rem;
-      background: radial-gradient(circle at 70% 30%, var(--bg-secondary), var(--bg-primary));
-      border-bottom: 1px solid var(--border);
-    }
-    header img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--accent);
-      box-shadow: 0 0 30px var(--accent-glow);
-      margin-bottom: 1.5rem;
-    }
-    header h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      background: linear-gradient(to right, var(--accent), #a78bfa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.5rem;
-    }
-    header p {
-      font-size: 1.25rem;
-      color: var(--text-secondary);
-      margin-bottom: 2rem;
-    }
-
-    /* navigation */
-    nav {
-      position: sticky;
-      top: 0;
-      background: color-mix(in srgb, var(--bg-primary) 80%, transparent);
-      backdrop-filter: blur(12px);
-      padding: 1rem;
-      text-align: center;
-      z-index: 1000;
-      border-bottom: 1px solid var(--border);
-    }
-    nav a {
-      margin: 0 1.2rem;
-      color: var(--text-primary);
-      text-decoration: none;
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      border-radius: 40px;
-      border: 1px solid transparent;
-      transition: 0.2s;
-    }
-    nav a:hover, nav a.active {
-      color: var(--accent);
-      border-color: var(--accent);
-    }
-    nav a.active {
-      background: var(--glass-bg);
-      backdrop-filter: blur(4px);
-      border: 1px solid var(--glass-border);
-    }
-
-    /* buttons - with specific colors */
-    .btn {
-      display: inline-block;
-      font-weight: 600;
-      padding: 0.9rem 2rem;
-      border-radius: 50px;
-      text-decoration: none;
-      transition: 0.3s;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 5px 15px var(--accent-glow);
-    }
-    .btn-green {
-      background: #10b981; /* green */
-      color: #020617;
-    }
-    .btn-green:hover {
-      background: #059669;
-      transform: scale(1.05);
-    }
-    .btn-red {
-      background: #ef4444; /* red */
-      color: #020617;
-    }
-    .btn-red:hover {
-      background: #dc2626;
-      transform: scale(1.05);
-    }
-
-    /* cards */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin: 2rem 0;
-    }
-    .card {
-      background: var(--bg-card);
-      border-radius: 1.5rem;
-      overflow: hidden;
-      transition: 0.3s;
-      border: 1px solid var(--border);
-    }
-    .card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: var(--card-shadow);
-      border-color: var(--accent);
-    }
-    .card img, .card video, .card iframe {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-bottom: 1px solid var(--border);
-    }
-    .card .content {
-      padding: 1.5rem;
-    }
-
-    /* GitHub repo card  */
-    .github-repo {
-      background: var(--bg-card);
-      border-radius: 1.5rem;
-      padding: 1.5rem;
-      border: 1px solid var(--border);
-    }
-    .github-repo h4 a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    .github-repo p {
-      color: var(--text-secondary);
-    }
-
-    /* skills pills */
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      justify-content: center;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .skill {
-      background: var(--bg-card);
-      padding: 0.7rem 1.5rem;
-      border-radius: 40px;
-      border: 1px solid var(--border);
-      transition: 0.2s;
-    }
-    .skill:hover {
-      background: var(--accent);
-      color: #020617;
-      transform: scale(1.05);
-    }
-
-    /* timeline */
-    .timeline {
-      border-left: 3px solid var(--accent);
-      padding-left: 2rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .timeline-item {
-      margin-bottom: 2rem;
-      position: relative;
-    }
-    .timeline-item:before {
-      content: '';
-      width: 14px;
-      height: 14px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: absolute;
-      left: -2.4rem;
-      top: 0.4rem;
-      border: 2px solid var(--bg-primary);
-    }
-
-    /* certifications grid */
-    .certs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-    }
-    .cert {
-      background: var(--bg-card);
-      padding: 1.5rem;
-      border-radius: 1.5rem;
-      border: 1px solid var(--border);
-      min-width: 200px;
-      text-align: center;
-    }
-    .cert i {
-      font-size: 2.5rem;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-
-    /* contact form */
-    .contact-form {
-      max-width: 600px;
-      margin: 2rem auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .contact-form input, .contact-form textarea {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 1rem;
-      border-radius: 16px;
-      color: var(--text-primary);
-    }
-    .contact-form button {
-      background: var(--accent);
-      border: none;
-      padding: 1rem;
-      border-radius: 40px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    /* blog modal */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-    }
-    .modal-content {
-      background: var(--bg-card);
-      padding: 2rem;
-      border-radius: 2rem;
-      max-width: 600px;
-      width: 90%;
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-    .modal .close {
-      float: right;
-      font-size: 2rem;
-      cursor: pointer;
-    }
-
-    /* github skeleton */
-    .skeleton {
-      background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-secondary) 50%, var(--bg-card) 75%);
-      background-size: 200% 100%;
-      animation: loading 1.5s infinite;
-      height: 200px;
-      border-radius: 1.5rem;
-    }
-    @keyframes loading {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-
-    /* toggle button */
-    .toggle {
-      position: fixed;
-      right: 25px;
-      top: 25px;
-      background: var(--bg-card);
-      color: var(--text-primary);
-      padding: 0.8rem 1.2rem;
-      border-radius: 40px;
-      cursor: pointer;
-      z-index: 1100;
-      backdrop-filter: blur(8px);
-      border: 1px solid var(--border);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-
-    /* ADMIN PANEL */
-    .login-container {
-      max-width: 400px;
-      margin: 4rem auto;
-      background: var(--bg-card);
-      padding: 2.5rem;
-      border-radius: 2rem;
-      border: 1px solid var(--border);
-      text-align: center;
-    }
-    .login-container h3 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-    }
-    .login-container input {
-      width: 100%;
-      padding: 1rem;
-      margin: 0.5rem 0;
-      background: var(--bg-primary);
-      border: 1px solid var(--border);
-      border-radius: 40px;
-      color: var(--text-primary);
-    }
-    .login-container button {
-      width: 100%;
-      padding: 1rem;
-      margin-top: 1rem;
-      background: var(--accent);
-      border: none;
-      border-radius: 40px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .login-container .error {
-      color: #ef4444;
-      margin-top: 0.5rem;
-    }
-
-    .admin-panel {
-      background: var(--bg-card);
-      border-radius: 2rem;
-      padding: 2.5rem;
-      margin: 3rem auto;
-      border: 2px dashed var(--accent);
-      display: none;
-    }
-    .admin-panel.visible {
-      display: block;
-    }
-    .admin-panel h3 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-    }
-    .admin-form {
-      display: grid;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    .admin-form input, .admin-form textarea {
-      background: var(--bg-primary);
-      border: 1px solid var(--border);
-      padding: 1rem;
-      border-radius: 16px;
-      color: var(--text-primary);
-    }
-    .admin-form button {
-      background: var(--accent);
-      border: none;
-      padding: 1rem;
-      border-radius: 40px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .logout-btn {
-      background: transparent;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      padding: 0.5rem 1.5rem;
-      border-radius: 40px;
-      cursor: pointer;
-      margin-top: 1rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2.5rem;
-      background: var(--bg-secondary);
-      border-top: 1px solid var(--border);
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nelson Lewis Munene | UI/UX Designer, Full-Stack Developer & SEO, Nairobi</title>
+<meta name="description" content="Nelson Lewis Munene is a Nairobi-based UI/UX designer, full-stack developer and SEO specialist, Head of Communications at GloboEdge Solutions, AI content creator, student pilot, author and skating coach.">
+<meta name="keywords" content="UI/UX designer Nairobi, full-stack developer Kenya, SEO Nairobi, motion graphics, AI content creation, GloboEdge Solutions, skating coach Nairobi, rollball, baseball 5">
+<meta name="author" content="Nelson Lewis Munene">
+<meta name="theme-color" content="#0099FF">
+<link rel="canonical" href="https://YOUR-DOMAIN.com/">
+<meta property="og:type" content="website"><meta property="og:title" content="Nelson Lewis Munene | UI/UX Designer, Nairobi"><meta property="og:description" content="Design, development, SEO, AI content, aviation and sport."><meta property="og:url" content="https://YOUR-DOMAIN.com/"><meta property="og:image" content="https://YOUR-DOMAIN.com/assets/images/nelson-profile.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Nelson Lewis Munene","jobTitle":"Head of Communications","worksFor":{"@type":"Organization","name":"GloboEdge Solutions"},"alumniOf":"Mount Kenya University","address":{"@type":"PostalAddress","addressLocality":"Nairobi","addressCountry":"KE"},"knowsAbout":["UI/UX design","Full-stack development","SEO","Motion graphics","AI content creation","Inline skating coaching","Aviation"],"sameAs":["https://github.com/devnepsea"],"email":"lewisnepsea@gmail.com"}</script>
+<style>
+:root{--sky:#0099FF;--white:#FDFDFE;--red:#FF2E00;--ink:#0A1A2F;--mute:#5B6B80;--line:#DCE6F2;--soft:#EAF4FF}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--white)}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink);line-height:1.6;overflow-x:hidden}
+h1,h2,.anton{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:1.02}
+a{color:inherit;text-decoration:none}
+/* ambient blobs behind light pages */
+.bgfx{position:fixed;inset:0;z-index:-1;overflow:hidden}
+.bgfx i{position:absolute;width:55vmax;height:55vmax;border-radius:50%;filter:blur(70px);opacity:.28;animation:blob 22s ease-in-out infinite alternate}
+.bgfx i:nth-child(1){background:var(--sky);top:-20vmax;left:-15vmax}.bgfx i:nth-child(2){background:var(--red);opacity:.13;bottom:-25vmax;right:-15vmax;animation-duration:28s}.bgfx i:nth-child(3){background:#5CBCFF;top:30%;left:45%;opacity:.18;animation-duration:34s}
+@keyframes blob{to{transform:translate(12vmax,8vmax) scale(1.2)}}
+.page{display:none;position:relative;overflow:hidden;min-height:100vh}
+.page.on{display:block;animation:pin .7s both}.tr .page.on{animation-delay:.55s}
+@keyframes pin{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.in{max-width:1200px;margin:0 auto;padding:7rem 1.5rem 4rem;position:relative;z-index:2}
+.tag{display:block;font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--sky);margin-bottom:.8rem}
+h2{font-size:clamp(2.4rem,6vw,4.5rem);margin-bottom:2rem}h2 em{font-style:normal;color:var(--sky)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--red);color:#fff;font:700 .85rem Inter;letter-spacing:.08em;text-transform:uppercase;padding:1rem 1.8rem;border-radius:8px;border:0;cursor:pointer;transition:.25s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(255,46,0,.35)}.btn.ghost{background:transparent;border:2px solid currentColor}
+nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;display:flex;gap:.15rem;background:rgba(253,253,254,.9);backdrop-filter:blur(14px);border:1px solid var(--line);padding:.35rem;border-radius:60px;max-width:94vw;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+nav a{font-size:.78rem;font-weight:600;padding:.5rem .8rem;border-radius:40px;transition:.2s}nav a:hover{background:var(--soft);color:var(--sky)}nav a.act{background:var(--ink);color:#fff}nav a.cta{background:var(--red);color:#fff}
+/* transitions: 4 styles */
+.wipe{position:fixed;inset:0;z-index:100;pointer-events:none;display:none}.wipe.go{display:flex;pointer-events:all}
+.wipe i{flex:1;animation-duration:1.1s;animation-timing-function:cubic-bezier(.7,0,.3,1);animation-fill-mode:both;animation-delay:calc(var(--n)*.035s)}
+.wipe i:nth-child(3n+1){background:var(--sky)}.wipe i:nth-child(3n+2){background:var(--ink)}.wipe i:nth-child(3n){background:var(--red)}
+.m-stripes i{animation-name:vup}
+.m-blinds{flex-direction:column}.m-blinds i{animation-name:hx}
+.m-circle i:not(:first-child),.m-slash i:not(:first-child){display:none}
+.m-circle i{background:var(--red)!important;animation-name:circ;animation-delay:0s}
+.m-slash i{flex:none;width:140%;margin-left:-20%;background:var(--sky)!important;animation-name:slash;animation-delay:0s}
+@keyframes vup{0%{transform:translateY(101%)}38%,62%{transform:none}100%{transform:translateY(-101%)}}
+@keyframes hx{0%{transform:translateX(-101%)}38%,62%{transform:none}100%{transform:translateX(101%)}}
+@keyframes circ{0%{clip-path:circle(0 at var(--cx,50%) var(--cy,50%))}38%,62%{clip-path:circle(150% at var(--cx,50%) var(--cy,50%));opacity:1}100%{clip-path:circle(150% at var(--cx,50%) var(--cy,50%));opacity:0}}
+@keyframes slash{0%{transform:translateX(-125%) skewX(-18deg)}38%,62%{transform:skewX(-18deg)}100%{transform:translateX(125%) skewX(-18deg)}}
+.wl{position:fixed;inset:0;display:none;place-items:center;z-index:101;color:#fff;font:clamp(3rem,12vw,9rem) Anton;text-transform:uppercase;pointer-events:none}
+.wipe.go~.wl{display:grid;animation:wl 1.1s both}
+@keyframes wl{0%,22%{opacity:0;transform:scale(.8)}38%,62%{opacity:1;transform:none}82%,100%{opacity:0;transform:scale(1.1)}}
+/* hero */
+.hero{min-height:100vh;background:linear-gradient(180deg,var(--sky),#5CBCFF 55%,rgba(253,253,254,0));padding:7.5rem 1.5rem 3rem;display:flex;flex-direction:column;align-items:center;text-align:center;color:#fff}
+.badge{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.5);padding:.4rem 1rem;border-radius:40px;font-size:.8rem;font-weight:600;margin-bottom:1.4rem}
+.hero h1{font-size:clamp(3.2rem,11vw,9rem);max-width:1100px}.ink{color:var(--ink)}
+.w{display:inline-block;white-space:pre}
+.on .hero h1 .w{animation:fit 1.5s cubic-bezier(.3,.8,.3,1) both;animation-delay:calc(.5s + var(--i)*.13s)}
+@keyframes fit{0%{opacity:0;transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(1.6)}35%{opacity:1}55%{transform:translate(calc(var(--x)*-.12),calc(var(--y)*-.12)) rotate(calc(var(--r)*-.3)) scale(.88)}75%{transform:rotate(1.5deg) scale(1.05)}90%{transform:rotate(-.6deg) scale(.99)}100%{transform:none}}
+.sub{max-width:640px;margin:1.4rem auto 2rem;font-size:1.1rem}.row{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}.hero .ghost{color:#fff}
+.arches{display:flex;gap:1rem;justify-content:center;align-items:flex-end;margin-top:3rem;width:100%;max-width:1000px}
+.arch{flex:1;max-width:230px;aspect-ratio:3/4;overflow:hidden;position:relative;display:grid;place-items:center;font:1.1rem Anton;text-transform:uppercase}
+.arch img,.ph img,.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.arch:nth-child(1){border-radius:20px;background:var(--red);transform:rotate(-4deg)}.arch:nth-child(2){border-radius:999px 999px 20px 20px;height:110%;background:#003E6B;border:5px solid var(--white)}.arch:nth-child(3){border-radius:999px;background:var(--ink);border:5px solid var(--white)}.arch:nth-child(4){border-radius:20px;background:#003E6B;transform:rotate(4deg)}
+.marq{background:var(--ink);color:#fff;overflow:hidden;white-space:nowrap;padding:1rem 0;transform:rotate(-1.2deg);margin:2rem -2rem}
+.marq div{display:inline-block;animation:m 30s linear infinite;font:1.5rem Anton;text-transform:uppercase}.marq b{color:var(--red);margin:0 1.1rem}
+@keyframes m{to{transform:translateX(-50%)}}
+.home-in{padding-top:2rem}
+/* cards */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.cell{background:var(--soft);border-radius:24px;padding:1.7rem;transition:.3s}.cell:hover{transform:translateY(-6px)}
+.w2{grid-column:span 2}.dark{background:var(--ink);color:#fff}.blue{background:var(--sky);color:#fff}.red{background:var(--red);color:#fff}
+.cell h3,.pc h3,.aic h3,.svc h3,.ex h3{font-size:1.15rem;margin-bottom:.5rem}.cell p{font-size:.95rem}.stat{font:3.2rem Anton}.ic{font-size:1.7rem;display:block;margin-bottom:.6rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;margin-bottom:3rem}.stats div{text-align:center;padding:1.2rem;border-radius:20px;background:rgba(255,255,255,.7);backdrop-filter:blur(8px);border:1px solid var(--line)}.stats b{font:2.8rem Anton;color:var(--sky);display:block}
+.svcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+.svc{border-radius:28px;padding:2rem;display:flex;flex-direction:column;gap:.6rem;transition:.3s;min-height:300px}.svc:hover{transform:translateY(-8px) rotate(-.6deg)}.svc p{font-size:.93rem}.svc ul{list-style:none;font-size:.85rem;display:flex;flex-wrap:wrap;gap:.4rem}.svc li{border:1px solid currentColor;border-radius:30px;padding:.15rem .7rem}.svc .go{margin-top:auto;font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase}
+.exg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.ex{border:2px solid var(--ink);border-radius:22px;padding:1.6rem;transition:.3s;background:rgba(255,255,255,.7);display:block}.ex small{color:var(--red);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.7rem}.ex p{font-size:.9rem;color:var(--mute)}.ex:hover{background:var(--ink);color:#fff;transform:translateY(-6px)}.ex:hover p{color:#A9BDD6}.ex span{display:inline-block;transition:.3s;font-weight:700}.ex:hover span{transform:translateX(8px)}
+.pills{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.2rem}.pill{border:2px solid var(--ink);border-radius:40px;padding:.45rem 1.1rem;font-weight:600;font-size:.9rem;transition:.2s}.pill:hover{background:var(--sky);border-color:var(--sky);color:#fff;transform:rotate(-2deg) scale(1.05)}
+.grp{font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--mute);margin:1.4rem 0 .6rem}
+.xp{display:grid;gap:1rem}.xi{display:grid;grid-template-columns:150px 1fr;gap:1.5rem;padding:1.7rem;border:2px solid var(--ink);border-radius:24px;transition:.3s;background:rgba(255,255,255,.75)}.xi:hover{background:var(--sky);color:#fff;border-color:var(--sky)}.xi.now{border-color:var(--red)}
+.when{font:1.2rem Anton;text-transform:uppercase}.xi h3{font-size:1.35rem}.xi ul{padding-left:1.1rem;font-size:.95rem}.live{background:var(--red);color:#fff;font:700 .6rem Inter;padding:.2rem .5rem;border-radius:20px;vertical-align:middle}
+.proj,.qs,.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
+.pc{border:2px solid var(--ink);border-radius:22px;padding:1.5rem;transition:.3s;background:rgba(255,255,255,.75)}.pc:hover{box-shadow:8px 8px 0 var(--red);transform:translate(-4px,-4px)}.pc small{color:var(--sky);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.7rem}.pc p{font-size:.92rem;color:var(--mute)}
+.pc.g small:before{content:"G ";color:var(--red)}
+.sh{font:1.7rem Anton;text-transform:uppercase;margin:2.5rem 0 1rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
+.tile{border-radius:22px;overflow:hidden;background:linear-gradient(135deg,var(--sky),#003E6B);aspect-ratio:4/3;position:relative;transition:.3s;cursor:pointer}.tile:hover{transform:scale(1.03) rotate(-1deg)}
+.tile video,.tile iframe{width:100%;height:100%;border:0;position:absolute;inset:0}.tile.yt{background-size:cover;background-position:center}.tile.yt:after{content:"▶";position:absolute;inset:0;display:grid;place-items:center;font-size:2.6rem;color:#fff;text-shadow:0 2px 12px #000}
+#gh{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}.gh{border:1px solid var(--line);background:var(--soft);border-radius:18px;padding:1.2rem;font-size:.88rem}.gh a{font-weight:700;color:var(--sky);font-size:1rem}
+.q{background:rgba(234,244,255,.85);border-radius:24px;padding:1.7rem}.q b{display:block;margin-top:1rem;font-size:.85rem}
+.ph{position:relative;aspect-ratio:4/3;border-radius:22px;overflow:hidden;background:linear-gradient(135deg,var(--sky),#003E6B)}
+/* AI: full-bleed animated dark */
+#p-ai{background:#050F1F;color:#fff}
+#p-ai:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 20% 25%,rgba(0,153,255,.55),transparent 38%),radial-gradient(circle at 80% 65%,rgba(255,46,0,.4),transparent 38%),radial-gradient(circle at 50% 100%,rgba(92,188,255,.35),transparent 40%);animation:aur 16s ease-in-out infinite alternate}
+#p-ai:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 1px,transparent 1px 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 48px);animation:grid 6s linear infinite;mask-image:linear-gradient(180deg,#000,transparent 95%)}
+@keyframes aur{to{transform:translate(6%,-5%) rotate(8deg) scale(1.15)}}@keyframes grid{to{background-position:0 48px,48px 0}}
+#p-ai h2 em{color:var(--red)}#p-ai .tag{color:#5CBCFF}
+.aig{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+.aic{border:1px solid rgba(255,255,255,.18);border-radius:22px;padding:1.5rem;background:rgba(15,37,64,.6);backdrop-filter:blur(10px);transition:.3s}.aic:hover{border-color:var(--sky);transform:translateY(-6px)}.aic p{font-size:.9rem;color:#C3D3E8}.aic em{display:block;font-style:normal;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#5CBCFF;font-weight:700;margin-bottom:.4rem}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1rem}.steps div{border-left:4px solid var(--red);padding:.4rem 1rem}.steps b{font:1.4rem Anton;display:block;text-transform:uppercase}.steps span{font-size:.88rem;color:#C3D3E8}
+/* AVIATION: full-bleed sky */
+#p-aviation{background:linear-gradient(180deg,#0077D6 0,var(--sky) 25%,#7CC8FF 60%,var(--white) 100%);color:#fff}
+.cloud{position:absolute;left:-260px;width:220px;height:66px;background:#fff;border-radius:70px;opacity:.85;animation:drift linear infinite;z-index:1}
+.cloud:before,.cloud:after{content:"";position:absolute;background:#fff;border-radius:50%}.cloud:before{width:90px;height:90px;top:-42px;left:28px}.cloud:after{width:70px;height:70px;top:-26px;left:105px}
+@keyframes drift{to{transform:translateX(calc(100vw + 560px))}}
+.plane{position:absolute;top:18%;left:0;font-size:2.4rem;animation:cruise 9s 1s linear infinite;z-index:1;filter:drop-shadow(0 8px 10px rgba(0,0,0,.2))}
+@keyframes cruise{from{transform:translateX(-10vw) rotate(-6deg)}to{transform:translateX(105vw) rotate(-6deg)}}
+.fl{display:grid;grid-template-columns:1.3fr 1fr;gap:2rem;align-items:center}
+.on .fl .w{animation:take 1.8s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(.6s + var(--i)*.06s)}
+@keyframes take{0%{opacity:0;transform:translate(-80vw,90px) rotate(-20deg) scale(.5)}25%{opacity:1}55%{transform:translate(-14vw,-70px) rotate(8deg) scale(1.1)}80%{transform:translate(2vw,12px) rotate(-3deg)}100%{transform:none}}
+.fs{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.fs div{background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border-radius:20px;padding:1.1rem;text-align:center}.fs b{font:2.3rem Anton;display:block}
+/* SPORTS: full-bleed stage */
+.stage{position:relative;height:460px;background:linear-gradient(180deg,var(--sky),#5CBCFF 70%,#BFE3FF)}
+.stage .in{padding-top:6.5rem}.stage h2{color:#fff;margin:0}.stage .tag{color:#fff}
+.ground{position:absolute;left:0;right:0;bottom:0;height:56px;background:var(--ink);z-index:1}.ground:before{content:"";position:absolute;top:26px;left:0;right:0;border-top:3px dashed #fff;opacity:.5}
+.bx{position:absolute;top:0;left:0;animation:bx 6s linear infinite;z-index:1}.by{animation:by 6s ease-in-out infinite}.ball{width:70px;height:70px;animation:spin .6s linear infinite}
+@keyframes bx{from{transform:translateX(-12vw)}to{transform:translateX(105vw)}}@keyframes by{0%,100%{transform:translateY(340px)}50%{transform:translateY(120px)}}@keyframes spin{to{transform:rotate(360deg)}}
+.skx{position:absolute;bottom:42px;left:0;animation:skx 7s linear infinite;display:flex;align-items:flex-end;gap:6px;z-index:2}
+@keyframes skx{from{transform:translateX(105vw)}to{transform:translateX(-18vw)}}
+.skate{width:120px;transform:scaleX(-1)}.wh{transform-box:fill-box;transform-origin:center;animation:spin .5s linear infinite}
+.lines{display:grid;gap:7px;padding-bottom:18px}.lines s{display:block;height:3px;background:#fff;opacity:.7;border-radius:3px;width:60px}.lines s:nth-child(2){width:90px}.lines s:nth-child(3){width:40px}
+.crawl{overflow:hidden;margin:0 -1.5rem;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex;gap:1rem;width:max-content;animation:crawl 32s linear infinite}.crawl:hover .track{animation-play-state:paused}
+@keyframes crawl{to{transform:translateX(-50%)}}
+.sc{width:270px;flex:none;border-radius:24px;padding:1.5rem;background:var(--ink);color:#fff;transition:.3s}.sc:nth-child(3n+2){background:var(--sky)}.sc:nth-child(3n){background:var(--red)}.sc:hover{transform:translateY(-8px) rotate(-2deg)}.sc b{font:1.5rem Anton;text-transform:uppercase;display:block;line-height:1.1}.sc span{font-size:.85rem;opacity:.85}.sc i{font-style:normal;font-size:1.8rem;display:block;margin-bottom:.5rem}
+/* CONTACT: full-bleed red */
+#p-contact{background:var(--red);color:#fff;display:none}#p-contact.on{display:block}
+#p-contact:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 15% 20%,rgba(255,255,255,.3),transparent 35%),radial-gradient(circle at 85% 75%,rgba(0,153,255,.55),transparent 38%),radial-gradient(circle at 60% 10%,rgba(10,26,47,.5),transparent 35%);animation:aur 14s ease-in-out infinite alternate}
+#p-contact .in{text-align:center}#p-contact h2{font-size:clamp(2.6rem,8vw,6rem)}
+form{max-width:540px;margin:2rem auto;display:grid;gap:.8rem}input,textarea{font:inherit;padding:1rem;border-radius:14px;border:0;color:var(--ink)}form .btn{background:var(--ink);justify-content:center}
+.soc{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}.soc a{background:rgba(255,255,255,.2);padding:.6rem 1.2rem;border-radius:40px;font-weight:600;font-size:.9rem}.soc a:hover{background:#fff;color:var(--red)}
+footer{text-align:center;padding:2rem 1rem;color:var(--mute);font-size:.85rem;background:var(--white)}
+@media(max-width:800px){.bento{grid-template-columns:1fr 1fr}.xi,.fl{grid-template-columns:1fr}.arch:nth-child(4){display:none}.in{padding:6rem 1.1rem 3rem}.stage{height:520px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
-  <div class="toggle" onclick="toggleMode()"><i class="fas fa-adjust"></i> Light / Dark</div>
+<div class="bgfx" aria-hidden="true"><i></i><i></i><i></i></div>
+<nav aria-label="Main"><a href="#home">Home</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#ai">AI</a><a href="#work">Work</a><a href="#aviation">Aviation</a><a href="#writing">Writing</a><a href="#sports">Sports</a><a class="cta" href="#contact">Hire me</a></nav>
+<div class="wipe"><i style="--n:0"></i><i style="--n:1"></i><i style="--n:2"></i><i style="--n:3"></i><i style="--n:4"></i><i style="--n:5"></i></div><div class="wl" id="wl"></div>
 
-  <header>
-    <img src="assets/images/profilepic.JPG" alt="Nelson Munene" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'150\' height=\'150\' viewBox=\'0 0 150 150\'%3E%3Crect width=\'150\' height=\'150\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'20\'%3ENelson%3C/text%3E%3C/svg%3E'">
-    <h1>Nelson Lewis Munene</h1>
-    <p><i class="fas fa-code"></i> Senior Developer · Elite graphic designer. Media & Communication· Student Pilot · Fiction Author</p>
-    <!-- Hire Me button  -->
-    <a href="#contact" class="btn btn-green"><i class="fas fa-paper-plane"></i> Hire Me</a>
-  </header>
-  <nav>
-    <a href="#about" class="nav-link">About Me </a>
-    <a href="#skills" class="nav-link">Skills</a>
-    <a href="#portfolio" class="nav-link">Portfolio</a>
-    <a href="#github" class="nav-link">GitHub</a>
-    <a href="#journey" class="nav-link">Journey</a>
-    <a href="#aviation" class="nav-link">Aviation</a>
-    <a href="#certs" class="nav-link">Certifications</a>
-    <a href="#testimonials" class="nav-link">Testimonials</a>
-    <a href="#blog" class="nav-link">Writing</a>
-    <a href="#contact" class="nav-link">Contact</a>
-    <a href="#" onclick="showLogin()" style="color:var(--accent);">Admin</a>
-  </nav>
-
-  <!-- About Section  -->
-  <section id="about">
-    <h2>About Me</h2>
-    <div style="text-align:center; max-width:900px; margin:0 auto; font-size:1.2rem">
-      <p>I hold a <strong>Bachelor’s degree in Mass Media and Communication (with IT) </strong> from Mount Kenya University, which laid the foundation for my diverse expertise. I specialize in <strong>Graphics design, motion graphics and 3D modelling</strong>, bringing visual stories to life with depth and motion. My technical toolkit includes <strong>SEO and digital web optimization, digital media management and creation</strong>, ensuring that every site I build is not only beautiful but also discoverable and fast. I’m equally skilled in both <strong>linear and non-linear editing</strong>, allowing me to shape narratives across traditional broadcast and modern digital platforms. Writing is another core pillar—whether it’s scripts, articles, or books, I believe words carry as much weight as visuals. By blending IT, media, aviation, and storytelling, I move seamlessly from full‑stack systems to cinematic edits.</p>
-    </div>
-  </section>
-
-  <!-- Skills -->
-  <section id="skills">
-    <h2>Core Skills</h2>
-    <div class="skills">
-      <div class="skill">Web Dev</div><div class="skill">Graphic Design</div>
-      <div class="skill">Video Editing</div><div class="skill">Animation</div>
-      <div class="skill">UI/UX</div><div class="skill">Cloud Systems</div>
-      <div class="skill">Broadcasting</div><div class="skill">Script Writing</div>
-      <div class="skill">Sound Engineering</div><div class="skill">PPL</div>
-      <div class="skill">Motion Graphics</div><div class="skill">3D Modelling</div>
-      <div class="skill">SEO</div><div class="skill">Digital Optimization</div>
-    </div>
-  </section>
-
-  <!-- Portfolio -->
-  <section id="portfolio">
-    <h2>Portfolio</h2>
-    <h3><i class="fas fa-paint-brush"></i> Graphics</h3>
-    <div class="grid" id="graphics-grid">
-      <div class="card"><img src="assets/images/design1.jpg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'200\' viewBox=\'0 0 400 200\'%3E%3Crect width=\'400\' height=\'200\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'24\'%3EDesign 1%3C/text%3E%3C/svg%3E'"></div>
-      <div class="card"><img src="assets/images/design2.jpg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'200\' viewBox=\'0 0 400 200\'%3E%3Crect width=\'400\' height=\'200\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'24\'%3EDesign 2%3C/text%3E%3C/svg%3E'"></div>
-    <div class="card"><img src="assets/images/design3.jpg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'200\' viewBox=\'0 0 400 200\'%3E%3Crect width=\'400\' height=\'200\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'24\'%3EDesign 1%3C/text%3E%3C/svg%3E'"></div>
-      <div class="card"><img src="assets/images/design4.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'200\' viewBox=\'0 0 400 200\'%3E%3Crect width=\'400\' height=\'200\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'24\'%3EDesign 2%3C/text%3E%3C/svg%3E'"></div>
-    <div class="card"><img src="assets/images/design5.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'200\' viewBox=\'0 0 400 200\'%3E%3Crect width=\'400\' height=\'200\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'24\'%3EDesign 1%3C/text%3E%3C/svg%3E'"></div>
-      <div class="card"><img src="assets/images/design6.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'200\' viewBox=\'0 0 400 200\'%3E%3Crect width=\'400\' height=\'200\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'24\'%3EDesign 2%3C/text%3E%3C/svg%3E'"></div>
-    <div class="card"><img src="assets/images/design7.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'200\' viewBox=\'0 0 400 200\'%3E%3Crect width=\'400\' height=\'200\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'24\'%3EDesign 1%3C/text%3E%3C/svg%3E'"></div>
-      <div class="card"><img src="assets/images/design8.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'200\' viewBox=\'0 0 400 200\'%3E%3Crect width=\'400\' height=\'200\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23fff\' font-size=\'24\'%3EDesign 2%3C/text%3E%3C/svg%3E'"></div>
-    
-    </div>
-
-    <h3><i class="fas fa-film"></i> Motion Graphics</h3>
-    <div class="grid" id="motion-grid">
-      <div class="card"><video controls><source src="assets/videos/motion1.mp4" type="video/mp4">Your browser does not support video.</video></div>
-      <div class="card"><video controls><source src="assets/videos/motion2.mp4" type="video/mp4">Your browser does not support video.</video></div>
-    <div class="card"><video controls><source src="assets/videos/motion3.mp4" type="video/mp4">Your browser does not support video.</video></div>
-      <div class="card"><video controls><source src="assets/videos/motion4.mp4" type="video/mp4">Your browser does not support video.</video></div>
-   
-    </div>
-
-   <h3><i class="fab fa-youtube"></i> Videos</h3>
-<div class="grid" id="video-grid">
-
-  <div class="card">
-    <iframe src="https://www.youtube.com/embed/jSYkJ47t5bE" allowfullscreen></iframe>
+<main>
+<!-- HOME -->
+<div class="page" id="p-home">
+<header class="hero">
+  <div class="badge">📍 Nairobi, Kenya · Open to projects</div>
+  <h1 data-split aria-label="I design experiences, not just screens.">I design experiences, <span class="ink">not just screens.</span></h1>
+  <p class="sub">Nelson Lewis Munene: UI/UX designer, full-stack developer and SEO specialist. Head of Communications at GloboEdge Solutions, AI content creator, student pilot, author and coach.</p>
+  <div class="row"><a href="#work" class="btn">See my work →</a><a href="assets/nelsonlewismunenecv.pdf" class="btn ghost" download>⬇ Download CV</a></div>
+  <div class="arches">
+    <div class="arch"><img src="assets/images/nelson-skating-coaching.jpg" alt="Nelson coaching inline skating" title="Nelson coaching inline skating" width="230" height="307" fetchpriority="high" onerror="this.remove()">Coach</div>
+    <div class="arch"><img src="assets/images/nelson-profile.jpg" alt="Nelson Lewis Munene, UI/UX designer in Nairobi" title="Nelson Lewis Munene" width="230" height="307" fetchpriority="high" onerror="this.remove()">Nelson</div>
+    <div class="arch"><img src="assets/images/nelson-cockpit.jpg" alt="Nelson in the cockpit, student pilot" title="Nelson in the cockpit" width="230" height="307" fetchpriority="high" onerror="this.remove()">Pilot</div>
+    <div class="arch"><img src="assets/images/nelson-rollball-goa.jpg" alt="Nelson, captain of GOA Rollball Club" title="Captain, GOA Rollball Club" width="230" height="307" loading="lazy" onerror="this.remove()">Captain</div>
   </div>
-
-  <div class="card">
-    <iframe src="https://www.youtube.com/embed/s2bJMsIy7oQ" allowfullscreen></iframe>
-  </div>
-
-  <div class="card">
-    <iframe src="https://www.youtube.com/embed/xS2IMsD7PQk" allowfullscreen></iframe>
-  </div>
-
-  <div class="card">
-    <iframe src="https://www.youtube.com/embed/4tro9Av8aQs" allowfullscreen></iframe>
-  </div>
-
+</header>
+<div class="marq" aria-hidden="true"><div>UI/UX Design <b>✦</b> Full-Stack Dev <b>✦</b> SEO <b>✦</b> Motion Graphics <b>✦</b> AI Content <b>✦</b> Rollball <b>✦</b> Aviation <b>✦</b> Storytelling <b>✦</b> UI/UX Design <b>✦</b> Full-Stack Dev <b>✦</b> SEO <b>✦</b> Motion Graphics <b>✦</b> AI Content <b>✦</b> Rollball <b>✦</b> Aviation <b>✦</b> Storytelling <b>✦</b></div></div>
+<div class="in home-in">
+<div class="stats"><div><b>5</b>Google-certified courses</div><div><b>5+</b>Schools coached</div><div><b>3 yrs</b>MKU team captain</div><div><b>2:1</b>Mass Media degree</div></div>
+<span class="tag">What I do</span><h2>One person, <em>four superpowers</em></h2>
+<div class="svcs">
+<a class="svc blue" href="#work"><span class="ic">🎨</span><h3>UI/UX &amp; Brand Design</h3><p>Interfaces people enjoy using: web, social, motion and brand systems that look loud and work smoothly.</p><ul><li>Figma-style UI</li><li>Motion</li><li>Branding</li></ul><span class="go">See the work →</span></a>
+<a class="svc dark" href="#experience"><span class="ic">💻</span><h3>Full-Stack Development</h3><p>I design it and I build it: responsive front ends, WordPress/Elementor builds, Python, JavaScript and API integrations.</p><ul><li>HTML/CSS/JS</li><li>Python</li><li>APIs</li><li>WordPress</li></ul><span class="go">How I build →</span></a>
+<a class="svc red" href="#experience"><span class="ic">🔍</span><h3>SEO &amp; Site Performance</h3><p>Getting websites found and loading fast. I've optimized sites for GloboEdge and for Dennis &amp; Paul Co., an auditing firm.</p><ul><li>On-page SEO</li><li>Speed</li><li>Audits</li><li>Search Console</li></ul><span class="go">See results →</span></a>
+<a class="svc" style="background:var(--soft)" href="#ai"><span class="ic">🤖</span><h3>AI Content &amp; Communications</h3><p>Brand storytelling powered by Claude, OpenAI, DeepSeek, Higgsfield and Seedance, directed by a designer's eye.</p><ul><li>AI video</li><li>Prompting</li><li>Social</li></ul><span class="go">Meet my AI stack →</span></a>
 </div>
-    </div>
+<div style="margin-top:4rem"><span class="tag">Keep exploring</span><h2>Curious <em>yet?</em></h2></div>
+<div class="exg">
+<a class="ex" href="#experience"><small>Experience</small><h3>From a TV47 newsroom to an Apple reseller</h3><p>Editing, website management and brand leadership.</p><span>Read the story →</span></a>
+<a class="ex" href="#education"><small>Education</small><h3>Ethical hacking? Python? Yes, both.</h3><p>Five Google-certified courses and a Mass Media degree.</p><span>See the certificates →</span></a>
+<a class="ex" href="#aviation"><small>Aviation</small><h3>Why is a designer learning to fly?</h3><p>Cockpit views, VFR rating and a PPL on the way.</p><span>Take off →</span></a>
+<a class="ex" href="#writing"><small>Writing</small><h3>A sci-fi novel set in Kenya</h3><p>Meet <i>Freefall</i> and my book <i>This Bird Is Crazy</i>.</p><span>Start reading →</span></a>
+<a class="ex" href="#sports"><small>Sports</small><h3>Captain on the rink, coach in the classroom</h3><p>Rollball, Baseball 5 and skating across Nairobi schools.</p><span>Meet the team →</span></a>
+<a class="ex" href="#contact"><small>Contact</small><h3>Got a project that needs to stand out?</h3><p>Let's design, build and rank it.</p><span>Start a conversation →</span></a>
+</div>
+<div style="margin-top:4rem"><span class="tag">Kind words</span><h2>What people <em>say</em></h2></div>
+<div class="qs">
+<div class="q">“Nelson's motion graphics brought our brand to life. Exceptional creativity!”<b>Jane Kamau · Creative Director, HALA Group of Companies</b></div>
+<div class="q">“A brilliant developer with a keen eye for design. Delivered beyond expectations.”<b>Mark Ochieng · Tech Lead, Moringa School</b></div>
+<div class="q">“His writing is captivating and technically sound. A true storyteller.”<b>Joash Onsare · Editor, TV47</b></div>
+</div></div>
+</div>
 
-    <!-- dynamic projects added via admin -->
-    <div id="dynamic-projects" class="grid" style="margin-top:2rem"></div>
-  </section>
+<!-- ABOUT -->
+<div class="page" id="p-about"><div class="in">
+<span class="tag">About me</span><h2>Pixels, motion <em>&amp; stories.</em></h2>
+<div class="bento">
+<div class="cell w2 blue"><span class="ic">✏️</span><h3>Designer first</h3><p>UI/UX designer with a Mass Media &amp; Communication (IT option) degree from Mount Kenya University. I blend graphics, motion, 3D, SEO and web into interfaces that are beautiful, fast and easy to find.</p></div>
+<div class="cell dark"><span class="ic">🍎</span><div class="stat">2</div><p>GloboEdge branches: Lavington Mall &amp; The Waterfront, Karen</p></div>
+<div class="cell red"><div class="stat">2:1</div><p>B.A. Mass Media, second class upper</p></div>
+<div class="cell"><span class="ic">🎬</span><h3>Linear &amp; non-linear</h3><p>Broadcast edits to Reels and TikToks.</p></div>
+<div class="cell"><span class="ic">🪶</span><h3>Writer</h3><p>Scripts, articles and fiction.</p></div>
+<div class="cell w2 dark"><span class="ic">🏅</span><h3>Sport &amp; school sport management</h3><p>Captain, coach and manager across rollball, inline skating and Baseball 5.</p></div>
+</div>
+<div class="grp">Design</div><div class="pills"><span class="pill">UI/UX</span><span class="pill">Graphic Design</span><span class="pill">Brand Identity</span><span class="pill">Motion Graphics</span><span class="pill">3D Modelling</span></div>
+<div class="grp">Build &amp; grow</div><div class="pills"><span class="pill">WordPress / Elementor</span><span class="pill">HTML · CSS · JavaScript</span><span class="pill">Python</span><span class="pill">API Integration</span><span class="pill">SEO</span><span class="pill">Site Speed</span><span class="pill">Social Media Growth</span></div>
+<div class="grp">Media</div><div class="pills"><span class="pill">Video Editing</span><span class="pill">Broadcasting</span><span class="pill">Sound Engineering</span><span class="pill">Script Writing</span></div>
+<div class="grp">Tools</div><div class="pills"><span class="pill">Premiere Pro</span><span class="pill">After Effects</span><span class="pill">Illustrator</span><span class="pill">InDesign</span><span class="pill">Blender</span></div>
+</div></div>
 
-  <!-- GitHub Projects with skeleton -->
-  <section id="github">
-    <h2><i class="fab fa-github"></i> Live GitHub Projects</h2>
-    <div id="github-grid" class="grid"></div>
-    <p style="text-align:center; margin-top:1rem;"><small> My Repos are auto‑fetched from GitHub (username: <span id="gh-username">devnepsea</span>)</small></p>
-  </section>
+<!-- EXPERIENCE -->
+<div class="page" id="p-experience"><div class="in">
+<span class="tag">Experience</span><h2>The <em>journey</em> so far</h2>
+<div class="xp">
+<div class="xi now"><div class="when">Now <span class="live">CURRENT</span></div><div><h3>Head of Communications, GloboEdge Solutions</h3><p><b>Apple Authorized Reseller · Nairobi</b></p><ul><li>Lead brand, content and communications across Instagram, TikTok and the website</li><li>Designing the multi-page GloboEdge web redesign with Apple product landing pages</li></ul></div></div>
+<div class="xi"><div class="when">Ongoing</div><div><h3>Skating Coach &amp; School Sport Manager</h3><p><b>Schools across Nairobi</b></p><ul><li>Potterhouse School (Runda), Kingsmead Junior (Ruaka), Presbyterian Academy (Ruaka), Jabali School, Parklands Nursery School</li></ul></div></div>
+<div class="xi"><div class="when">Ongoing</div><div><h3>Creator, INFINITY</h3><p><b>Faceless YouTube channel</b></p><ul><li>Tech, aviation and facts content, produced end to end</li></ul></div></div>
+<div class="xi"><div class="when">Earlier</div><div><h3>Website Manager &amp; SEO Optimizer, Dennis &amp; Paul Co.</h3><p><b>Auditing firm</b></p><ul><li>Managed the firm's website and optimized it for search visibility and speed</li></ul></div></div>
+<div class="xi"><div class="when">6 months</div><div><h3>Assistant Editor, TV47</h3><p><b>Television newsroom</b></p><ul><li>Edited and shaped broadcast content for TV47</li></ul></div></div>
+<div class="xi"><div class="when">Freelance</div><div><h3>Full-Stack Developer &amp; Designer</h3><ul><li>Websites, interfaces and brand visuals for clients</li></ul></div></div>
+</div></div></div>
 
-  <!-- Journey -->
-  <section id="journey">
-    <h2>Professional Journey</h2>
-    <div class="timeline">
-      <div class="timeline-item"><h4>🎓 Graduate – Mass Media and Communication  ( with IT option)</h4><p>Mount Kenya University</p></div>
-      <div class="timeline-item"><h4>✈️ Student Pilot (PPL)</h4><p>Proactive School of Aviation</p></div>
-      <div class="timeline-item"><h4>💻 Full‑Stack Developer</h4><p>Freelance & enterprise</p></div>
-      <div class="timeline-item"><h4>📖 Author & Book Writer</h4><p>“This Bird is Crazy ” </p></div>
-      <div class="timeline-item"><h4>📡 Media Professional</h4><p>Broadcast &  Media production</p></div>
-    </div>
-  </section>
+<!-- EDUCATION -->
+<div class="page" id="p-education"><div class="in">
+<span class="tag">Education</span><h2>Always <em>learning</em></h2>
+<div class="grp">University</div>
+<div class="proj"><div class="pc"><small>Degree</small><h3>B.A. Mass Media &amp; Communication</h3><p>Mount Kenya University · IT option · Second class upper division</p></div><div class="pc"><small>Short program</small><h3>Artificial Intelligence</h3><p>Mount Kenya University · AI in education and fundamentals of AI content creation.</p></div></div>
+<div class="grp">Google-certified courses</div>
+<div class="cg">
+<div class="pc g"><small>Google certified</small><h3>🛡️ Ethical Hacking</h3><p>Security mindset for building safer sites.</p></div>
+<div class="pc g"><small>Google certified</small><h3>📈 Digital Marketing</h3><p>SEO, social and campaign strategy.</p></div>
+<div class="pc g"><small>Google certified</small><h3>🐍 Python</h3><p>Scripting and automation.</p></div>
+<div class="pc g"><small>Google certified</small><h3>⚡ JavaScript</h3><p>Interactive, modern front ends.</p></div>
+<div class="pc g"><small>Google certified</small><h3>🔌 API Integration</h3><p>Connecting services and live data.</p></div>
+</div>
+<div class="grp">Other credentials</div>
+<div class="cg"><div class="pc"><small>Certificate</small><h3>Full-Stack Developer</h3><p>freeCodeCamp</p></div><div class="pc"><small>Certified</small><h3>Adobe Creative Suite</h3><p>Premiere Pro, After Effects, Illustrator, InDesign, Blender</p></div><div class="pc"><small>In progress</small><h3>Private Pilot Licence</h3><p>Proactive School of Aviation</p></div></div>
+</div></div>
 
-  <!-- Aviation Section -->
-  <section id="aviation">
-    <h2><i class="fas fa-plane"></i> Aviation Journey</h2>
-    <div style="text-align:center; max-width:700px; margin:0 auto;">
-      <p>Student Pilot pursuing Private Pilot License (PPL) at Proactive School of Aviation. Passionate about flying and integrating technology with aviation. Currently logging hours towards cross-country endorsement.</p>
-      <div style="margin-top:2rem; display:flex; justify-content:center; gap:2rem; flex-wrap:wrap;">
-        <div><i class="fas fa-clock" style="color:var(--accent);"></i> 15+ Flight Hours</div>
-        <div><i class="fas fa-map-marked-alt" style="color:var(--accent);"></i> 2 Cross-Country</div>
-        <div><i class="fas fa-cloud-sun" style="color:var(--accent);"></i> VFR Rated</div>
-      </div>
-    </div>
-  </section>
+<!-- AI -->
+<div class="page" id="p-ai"><div class="in">
+<span class="tag">AI Lab</span><h2>I don't just use AI. <em>I direct it.</em></h2>
+<p style="max-width:700px;color:#C3D3E8;margin-bottom:2.5rem">I completed an AI short program at Mount Kenya University covering AI in education and the fundamentals of AI content creation. Since then I've built a stack of tools I use for writing, coding, imagery and video, and I combine them with a designer's eye so the final result never feels machine-made.</p>
+<div class="aig">
+<div class="aic"><em>Writing · Code · Strategy</em><h3>🧠 Claude</h3><p>My go-to for prompt design, long-form writing, code and structured thinking, from website copy to captions and scripts.</p></div>
+<div class="aic"><em>Assistant · Images</em><h3>💬 OpenAI</h3><p>ChatGPT and the OpenAI ecosystem for ideation, drafts, research and visual concepts.</p></div>
+<div class="aic"><em>Reasoning · Code</em><h3>🔎 DeepSeek</h3><p>A strong second brain for reasoning through problems and debugging code.</p></div>
+<div class="aic"><em>AI video</em><h3>🎥 Higgsfield</h3><p>Cinematic, camera-controlled AI video for ads, reels and social content.</p></div>
+<div class="aic"><em>AI video</em><h3>🌀 Seedance</h3><p>Text and image to video for motion-led storytelling and product visuals.</p></div>
+<div class="aic"><em>AI imagery</em><h3>🍌 Nano Banana</h3><p>Fast image generation and editing for campaign visuals and thumbnails.</p></div>
+</div>
+<div class="sh" style="color:#fff;margin-top:3rem">My workflow</div>
+<div class="steps"><div><b>1 · Brief</b><span>Define audience, goal and tone.</span></div><div><b>2 · Prompt</b><span>Write precise prompts with references.</span></div><div><b>3 · Generate</b><span>Create images, video and copy.</span></div><div><b>4 · Design</b><span>Polish in Adobe and the UI. Human taste last.</span></div></div>
+</div></div>
 
-  <!-- Certifications & Awards -->
-  <section id="certs">
-    <h2><i class="fas fa-certificate"></i> Certifications</h2>
-    <div class="certs">
-      <div class="cert"><i class="fas fa-graduation-cap"></i><h4>B.A. Mass Media ( second class upper division )</h4><p>Mount Kenya University</p></div>
-      <div class="cert"><i class="fas fa-plane"></i><h4>Student Pilot (PPL)</h4><p>Proactive School of Aviation</p></div>
-      <div class="cert"><i class="fas fa-code"></i><h4>Full-Stack Developer</h4><p>FreeCodeCamp</p></div>
-      <div class="cert"><i class="fas fa-video"></i><h4>Adobe Certified</h4><p>Premiere Pro, Blender, Illustrator, after effects, indesign </p></div>
-    </div>
-  </section>
+<!-- WORK -->
+<div class="page" id="p-work"><div class="in">
+<span class="tag">Selected work</span><h2>Things I've <em>made</em></h2>
+<div class="proj">
+<div class="pc"><small>Web · UI/UX</small><h3>GloboEdge Website Redesign</h3><p>Multi-page WordPress/Elementor redesign with Apple product landing pages.</p></div>
+<div class="pc"><small>SEO · Web</small><h3>Dennis &amp; Paul Co. Website</h3><p>Managed and optimized the auditing firm's site.</p></div>
+<div class="pc"><small>Social · Brand</small><h3>GloboEdge Content</h3><p>Instagram and TikTok content across the Apple line.</p></div>
+<div class="pc"><small>Video series</small><h3>DP Farms: Our Coffee Journey</h3><p>From coffee varieties and seedlings to seed beds.</p></div>
+<div class="pc"><small>YouTube</small><h3>INFINITY</h3><p>Faceless channel on tech, aviation and facts.</p></div>
+</div>
+<div class="sh">Graphics</div><div class="grid" id="gfx"></div>
+<div class="sh">Motion graphics</div>
+<div class="grid"><div class="tile"><video controls preload="none" src="assets/videos/motion1.mp4"></video></div><div class="tile"><video controls preload="none" src="assets/videos/motion2.mp4"></video></div><div class="tile"><video controls preload="none" src="assets/videos/motion3.mp4"></video></div><div class="tile"><video controls preload="none" src="assets/videos/motion4.mp4"></video></div></div>
+<div class="sh">Videos</div>
+<div class="grid"><div class="tile yt" data-yt="jSYkJ47t5bE"></div><div class="tile yt" data-yt="s2bJMsIy7oQ"></div><div class="tile yt" data-yt="xS2IMsD7PQk"></div><div class="tile yt" data-yt="4tro9Av8aQs"></div></div>
+<div class="sh">Live from GitHub</div><div id="gh"></div>
+</div></div>
 
-  <!-- Testimonials -->
-  <section id="testimonials">
-    <h2><i class="fas fa-quote-right"></i> Testimonials</h2>
-    <div class="grid">
-      <div class="card"><div class="content">"Nelson's motion graphics brought our brand to life. Exceptional creativity!" <br>— <strong>Jane Kamau, Creative Director HALA GROUP OF COMPANIES </strong></div></div>
-      <div class="card"><div class="content">"A brilliant developer with a keen eye for design. Delivered beyond expectations." <br>— <strong>Mark Ochieng, Tech Lead Moringa school </strong></div></div>
-      <div class="card"><div class="content">"His writing is captivating and technically sound. A true storyteller." <br>— <strong>Joash onsare , Editor TV 47 </strong></div></div>
-    </div>
-  </section>
+<!-- AVIATION -->
+<div class="page" id="p-aviation">
+<div class="cloud" style="top:14%;animation-duration:40s"></div><div class="cloud" style="top:38%;animation-duration:55s;animation-delay:-20s;transform:scale(1.4)"></div><div class="cloud" style="top:62%;animation-duration:48s;animation-delay:-8s;transform:scale(.8)"></div><div class="cloud" style="top:80%;animation-duration:62s;animation-delay:-30s;transform:scale(1.2)"></div>
+<div class="plane" aria-hidden="true">✈️</div>
+<div class="in"><div class="fl">
+<div><span class="tag" style="color:#fff">Aviation</span><h2 data-split aria-label="Let's fly.">Let's <span class="ink">fly.</span></h2><p data-split style="font-size:1.1rem">Student pilot working toward a Private Pilot Licence at Proactive School of Aviation. I love merging technology with flight, and it feeds my content and my fiction.</p></div>
+<div class="fs"><div><b>15+</b>Flight hours</div><div><b>2</b>Cross-country</div><div><b>VFR</b>Rated</div><div><b>PPL</b>In progress</div></div>
+</div>
+<div class="grid" style="margin-top:3rem"><div class="ph"><img src="assets/images/nelson-cockpit.jpg" alt="Nelson in the cockpit during flight training" title="Nelson in the cockpit" loading="lazy" decoding="async" onerror="this.remove()"></div></div>
+</div></div>
 
-  <!-- Blog / Writing -->
-  <section id="blog">
-    <h2><i class="fas fa-feather"></i> Writing & Publications</h2>
-    <div id="blog-posts" class="grid"></div>
-  </section>
+<!-- WRITING -->
+<div class="page" id="p-writing"><div class="in">
+<span class="tag">Writing</span><h2>Fiction <em>author</em></h2>
+<div class="proj"><div class="pc"><small>Sci-fi novel</small><h3>Freefall</h3><p>A science fiction story set in Kenya.</p></div><div class="pc"><small>Book</small><h3>This Bird Is Crazy</h3><p>Published work from my author journey.</p></div></div>
+</div></div>
 
-  <!-- Contact with Form -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <form class="contact-form" action="https://formspree.io/f/xjgazvgy" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-    <p style="text-align:center; margin-top:2rem;">Or email directly: <a href="mailto:lewisnepsea@gmail.com" style="color:var(--accent);">lewisnepsea@gmail.com</a></p>
-    <!-- Download CV button - now red -->
-    <a href="assets\nelsonlewismunenecv.pdf" class="btn btn-red" style="display:block; width:200px; margin:2rem auto; text-align:center;" download><i class="fas fa-download"></i> Download CV</a>
-  </section>
+<!-- SPORTS -->
+<div class="page" id="p-sports">
+<div class="stage">
+<div class="in"><span class="tag">Sport</span><h2>Rollball · Baseball 5 · Skating</h2></div>
+<div class="bx" aria-hidden="true"><div class="by"><svg class="ball" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#fff" stroke="#0A1A2F" stroke-width="2"/><path d="M14 10c11 11 11 33 0 44M50 10c-11 11-11 33 0 44" fill="none" stroke="#FF2E00" stroke-width="3" stroke-dasharray="4 4"/></svg></div></div>
+<div class="ground"></div>
+<div class="skx" aria-hidden="true"><div class="lines"><s></s><s></s><s></s></div><svg class="skate" viewBox="0 0 90 56"><path d="M12 4h22v20l34 6q10 3 10 12v4H12z" fill="#FF2E00"/><path d="M12 4h22v8H12z" fill="#0A1A2F"/><rect x="10" y="42" width="70" height="4" rx="2" fill="#0A1A2F"/><g fill="#fff" stroke="#0A1A2F" stroke-width="2"><circle class="wh" cx="19" cy="48" r="6"/><circle class="wh" cx="36" cy="48" r="6"/><circle class="wh" cx="53" cy="48" r="6"/><circle class="wh" cx="70" cy="48" r="6"/></g><path class="wh" d="M19 43v10M36 43v10M53 43v10M70 43v10" stroke="#0A1A2F" stroke-width="2"/></svg></div>
+</div>
+<div class="in" style="padding-top:3rem">
+<h2>On the <em>field</em> &amp; the <em>rink</em></h2>
+<div class="bento">
+<div class="cell w2 red"><span class="ic">🛼</span><h3>Captain, GOA Rollball Club</h3><p>I lead GOA Rollball Club in the highest tier of the national league. Before that I captained the Mount Kenya University rollball team for 3 years.</p></div>
+<div class="cell w2 blue"><span class="ic">⚾</span><h3>Baseball 5, First Base</h3><p>Played first base for the MKU school team, competing in the national league.</p></div>
+<div class="cell w2 dark"><span class="ic">🏫</span><h3>School sport management</h3><p>I run and manage school sport programs, from skating clubs to inter-school competition.</p></div>
+<div class="cell w2"><span class="ic">📣</span><h3>Skating coach</h3><p>Inline skating coach for schools that want a safe, fun and structured program.</p></div>
+</div>
+<div class="sh">Schools I've coached</div>
+<div class="crawl" aria-label="Schools coached"><div class="track" id="track">
+<div class="sc"><i>🛼</i><b>Potterhouse School</b><span>Runda · Nairobi</span></div>
+<div class="sc"><i>🛼</i><b>Kingsmead Junior</b><span>Ruaka · Nairobi</span></div>
+<div class="sc"><i>🛼</i><b>Presbyterian Academy</b><span>Ruaka · Nairobi</span></div>
+<div class="sc"><i>🛼</i><b>Jabali School</b><span>Nairobi</span></div>
+<div class="sc"><i>🛼</i><b>Parklands Nursery School</b><span>Parklands · Nairobi</span></div>
+</div></div>
+<div class="sh">In action</div>
+<div class="grid">
+<div class="ph"><img src="assets/images/nelson-rollball-goa.jpg" alt="Nelson playing rollball for GOA Rollball Club" title="Rollball, GOA Rollball Club" loading="lazy" decoding="async" onerror="this.remove()"></div>
+<div class="ph"><img src="assets/images/nelson-baseball5-mku.jpg" alt="Nelson playing Baseball 5 first base for MKU" title="Baseball 5, MKU" loading="lazy" decoding="async" onerror="this.remove()"></div>
+<div class="ph"><img src="assets/images/nelson-skating-coaching.jpg" alt="Nelson coaching school children in inline skating" title="Skating coaching" loading="lazy" decoding="async" onerror="this.remove()"></div>
+</div>
+<p style="margin-top:2rem"><a class="btn" href="#contact">Book a coaching session →</a></p>
+</div></div>
 
-  <!-- Admin Login Section -->
-  <section id="login-section" style="display: none; max-width:500px; margin:0 auto;">
-    <div class="login-container">
-      <h3><i class="fas fa-lock"></i> Admin Login</h3>
-      <input type="text" id="username" placeholder="Username" value="admin">
-      <input type="password" id="password" placeholder="Password">
-      <button onclick="performLogin()">Login</button>
-      <p class="error" id="login-error"></p>
-      <p style="margin-top:1rem;">(password is only set by the developer )</p>
-    </div>
-  </section>
+<!-- CONTACT -->
+<div class="page" id="p-contact"><div class="in">
+<h2>Let's build something loud.</h2><p>A brand, a website, a story or a school skating program? Let's talk.</p>
+<form action="https://formspree.io/f/xjgazvgy" method="POST"><input type="text" name="name" placeholder="Your name" required><input type="email" name="email" placeholder="Your email" required><textarea name="message" rows="4" placeholder="Tell me about your project" required></textarea><button class="btn" type="submit">Send message →</button></form>
+<div class="soc"><a href="mailto:lewisnepsea@gmail.com">✉ lewisnepsea@gmail.com</a><a href="https://github.com/devnepsea" rel="noopener" target="_blank">GitHub</a><a href="assets/nelsonlewismunenecv.pdf" download>⬇ CV</a></div>
+</div></div>
+</main>
+<footer>© 2026 Nelson Lewis Munene · Designed in Nairobi</footer>
 
-  <!-- Admin Panel -->
-  <section id="admin-section" style="max-width:900px; margin:0 auto;">
-    <div id="admin-panel" class="admin-panel">
-      <h3><i class="fas fa-crown"></i> Admin upload</h3>
-      <div class="admin-form">
-        <h4>➕ Add project</h4>
-        <input type="text" id="proj-title" placeholder="Project title">
-        <textarea id="proj-desc" placeholder="Short description"></textarea>
-        <input type="url" id="proj-image" placeholder="Image URL (optional)">
-        <button onclick="addProject()">Publish</button>
-      </div>
-      <div class="admin-form">
-        <h4>📝 Add blog post</h4>
-        <input type="text" id="blog-title" placeholder="Post title">
-        <textarea id="blog-content" placeholder="Post content"></textarea>
-        <button onclick="addBlogPost()">Publish</button>
-      </div>
-      <div class="admin-form">
-        <h4>GitHub username</h4>
-        <input type="text" id="github-user-input" value="devnepsea">
-        <button onclick="updateGitHubUsername()">Update</button>
-      </div>
-      <button class="logout-btn" onclick="logout()">Logout</button>
-    </div>
-  </section>
-
-  <!-- Blog Modal -->
-  <div id="blogModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h3 id="modal-title"></h3>
-      <p id="modal-content"></p>
-    </div>
-  </div>
-
-  <footer>
-    <p>© 2026 Nelson  Lewis Munene  Portfolio. All rights reserved.</p>
-  </footer>
-
-  <script>
-    // Toggle dark mode
-    function toggleMode() { document.body.classList.toggle('light'); }
-
-    // Admin login
-    function showLogin() {
-      document.getElementById('login-section').style.display = 'block';
-      document.getElementById('admin-panel').classList.remove('visible');
-    }
-    function performLogin() {
-      const user = document.getElementById('username').value;
-      const pwd = document.getElementById('password').value;
-      if (user === 'admin' && pwd === 'admin123') {
-        document.getElementById('login-section').style.display = 'none';
-        document.getElementById('admin-panel').classList.add('visible');
-      } else {
-        document.getElementById('login-error').innerText = 'Invalid credentials';
-      }
-    }
-    function logout() {
-      document.getElementById('admin-panel').classList.remove('visible');
-      document.getElementById('login-section').style.display = 'none';
-    }
-
-    // LocalStorage keys
-    const PROJECTS_KEY = 'nelson_projects';
-    const BLOGS_KEY = 'nelson_blogs';
-    const GITHUB_USER_KEY = 'nelson_github_user';
-
-    // Render projects from localStorage
-    function renderProjects() {
-      const projects = JSON.parse(localStorage.getItem(PROJECTS_KEY)) || [];
-      const container = document.getElementById('dynamic-projects');
-      if (projects.length === 0) {
-        container.innerHTML = '';
-        return;
-      }
-      let html = '';
-      projects.forEach(p => {
-        html += `<div class="card"><div class="content"><h4>${p.title}</h4><p>${p.desc}</p>${p.image ? `<img src="${p.image}" style="height:150px; object-fit:cover; border-radius:12px; margin-top:10px">` : ''}</div></div>`;
-      });
-      container.innerHTML = html;
-    }
-
-    // Render blog posts
-    function renderBlogs() {
-      const blogs = JSON.parse(localStorage.getItem(BLOGS_KEY)) || [];
-      const container = document.getElementById('blog-posts');
-      if (blogs.length === 0) {
-        container.innerHTML = `<div class="card"><div class="content"><h4>No posts yet</h4><p>Admin can add via panel.</p></div></div>`;
-        return;
-      }
-      let html = '';
-      blogs.forEach((b, index) => {
-        // Escape quotes for modal
-        const titleSafe = b.title.replace(/'/g, "\\'");
-        const contentSafe = b.content.replace(/'/g, "\\'");
-        html += `<div class="card" onclick="openModal('${titleSafe}', '${contentSafe}')"><div class="content"><h4>${b.title}</h4><p>${b.content.substring(0, 50)}...</p></div></div>`;
-      });
-      container.innerHTML = html;
-    }
-
-    // Add project
-    function addProject() {
-      const title = document.getElementById('proj-title').value.trim();
-      const desc = document.getElementById('proj-desc').value.trim();
-      const image = document.getElementById('proj-image').value.trim();
-      if (!title || !desc) { alert('Title and description required'); return; }
-      const projects = JSON.parse(localStorage.getItem(PROJECTS_KEY)) || [];
-      projects.push({ title, desc, image });
-      localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
-      renderProjects();
-      document.getElementById('proj-title').value = '';
-      document.getElementById('proj-desc').value = '';
-      document.getElementById('proj-image').value = '';
-    }
-
-    // Add blog post
-    function addBlogPost() {
-      const title = document.getElementById('blog-title').value.trim();
-      const content = document.getElementById('blog-content').value.trim();
-      if (!title || !content) { alert('Title and content required'); return; }
-      const blogs = JSON.parse(localStorage.getItem(BLOGS_KEY)) || [];
-      blogs.push({ title, content });
-      localStorage.setItem(BLOGS_KEY, JSON.stringify(blogs));
-      renderBlogs();
-      document.getElementById('blog-title').value = '';
-      document.getElementById('blog-content').value = '';
-    }
-
-    // GitHub fetch with skeleton
-    async function fetchGitHubRepos() {
-      const username = localStorage.getItem(GITHUB_USER_KEY) || 'devnepsea';
-      document.getElementById('gh-username').innerText = username;
-      const grid = document.getElementById('github-grid');
-      grid.innerHTML = '<div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>';
-      try {
-        const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
-        if (!res.ok) throw new Error('User not found');
-        const repos = await res.json();
-        if (repos.length === 0) { grid.innerHTML = '<p>No public repos found.</p>'; return; }
-        let html = '';
-        repos.forEach(repo => {
-          html += `<div class="card github-repo"><h4><a href="${repo.html_url}" target="_blank" style="color:var(--accent);">${repo.name}</a></h4><p>${repo.description || 'No description'}</p><p><i class="fas fa-star"></i> ${repo.stargazers_count}  <i class="fas fa-code-branch"></i> ${repo.forks_count}</p></div>`;
-        });
-        grid.innerHTML = html;
-      } catch (e) {
-        grid.innerHTML = '<p style="color:red;">Could not load repos. Set correct username in admin.</p>';
-      }
-    }
-
-    function updateGitHubUsername() {
-      const newUser = document.getElementById('github-user-input').value.trim();
-      if (newUser) {
-        localStorage.setItem(GITHUB_USER_KEY, newUser);
-        fetchGitHubRepos();
-      }
-    }
-
-    // Modal functions
-    function openModal(title, content) {
-      document.getElementById('modal-title').innerText = title;
-      document.getElementById('modal-content').innerText = content;
-      document.getElementById('blogModal').style.display = 'flex';
-    }
-    function closeModal() {
-      document.getElementById('blogModal').style.display = 'none';
-    }
-
-    // Active nav highlight
-    function setActiveNav() {
-      const sections = document.querySelectorAll('section');
-      const navLinks = document.querySelectorAll('.nav-link');
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.clientHeight;
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-          current = section.getAttribute('id');
-        }
-      });
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        const href = link.getAttribute('href').substring(1);
-        if (href === current) link.classList.add('active');
-      });
-    }
-    window.addEventListener('scroll', setActiveNav);
-    window.addEventListener('load', setActiveNav);
-
-    // Initial load
-    renderProjects();
-    renderBlogs();
-    fetchGitHubRepos();
-    document.getElementById('github-user-input').value = localStorage.getItem(GITHUB_USER_KEY) || 'nelson-munene';
-
-    // Close modal when clicking outside
-    window.onclick = function(event) {
-      if (event.target.classList.contains('modal')) closeModal();
-    }
-  </script>
+<script>
+(function(){
+var T={home:'Home',about:'About',experience:'Experience',education:'Education',ai:'AI Lab',work:'Work',aviation:'Aviation',writing:'Writing',sports:'Sports',contact:'Hire me'},
+M={home:'stripes',about:'blinds',experience:'slash',education:'circle',ai:'circle',work:'blinds',aviation:'slash',writing:'blinds',sports:'stripes',contact:'circle'},
+cur=null,wipe=document.querySelector('.wipe'),wl=document.getElementById('wl');
+document.addEventListener('click',function(e){if(e.target.closest('a[href^="#"]')){wipe.style.setProperty('--cx',e.clientX+'px');wipe.style.setProperty('--cy',e.clientY+'px')}});
+var n=0;document.querySelectorAll('[data-split]').forEach(function(el){(function walk(node){[].slice.call(node.childNodes).forEach(function(c){
+ if(c.nodeType===3){var f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(function(t){if(!t)return;if(/^\s+$/.test(t)){f.appendChild(document.createTextNode(' '));return}var s=document.createElement('span');s.className='w';s.textContent=t;s.style.setProperty('--i',n++);f.appendChild(s)});node.replaceChild(f,c)}else walk(c)})})(el)});
+function scatter(){document.querySelectorAll('.hero .w').forEach(function(s){s.style.setProperty('--x',(Math.random()*60-30)+'vw');s.style.setProperty('--y',(Math.random()*40-20)+'vh');s.style.setProperty('--r',(Math.random()*60-30)+'deg')})}
+function show(id){if(!T[id])id='home';cur=id;scatter();
+ document.querySelectorAll('.page').forEach(function(p){p.classList.toggle('on',p.id==='p-'+id)});
+ document.querySelectorAll('nav a').forEach(function(a){a.classList.toggle('act',a.getAttribute('href')==='#'+id)});
+ document.title=id==='home'?'Nelson Lewis Munene | UI/UX Designer, Full-Stack Developer & SEO, Nairobi':T[id]+' | Nelson Lewis Munene';
+ window.scrollTo(0,0);if(id==='work')loadGH()}
+function route(anim){var id=location.hash.slice(1)||'home';if(id===cur)return;
+ if(!anim||matchMedia('(prefers-reduced-motion:reduce)').matches){show(id);return}
+ document.body.classList.add('tr');wl.textContent=T[id]||'Home';
+ wipe.className='wipe m-'+(M[id]||'stripes');void wipe.offsetWidth;wipe.classList.add('go');
+ setTimeout(function(){show(id)},590);setTimeout(function(){wipe.className='wipe'},1350)}
+window.addEventListener('hashchange',function(){route(true)});
+/* crawl: duplicate the school cards for a seamless loop */
+var tr=document.getElementById('track');tr.innerHTML+=tr.innerHTML;
+var g=document.getElementById('gfx');for(var i=1;i<=8;i++){var d=document.createElement('div');d.className='tile';d.innerHTML='<img src="assets/images/design'+i+'.'+(i<4?'jpg':'png')+'" alt="Design work '+i+' by Nelson Munene" title="Design '+i+'" loading="lazy" decoding="async" onerror="this.parentNode.remove()">';g.appendChild(d)}
+document.querySelectorAll('[data-yt]').forEach(function(t){var id=t.dataset.yt;t.style.backgroundImage='url(https://i.ytimg.com/vi/'+id+'/hqdefault.jpg)';t.addEventListener('click',function(){t.classList.remove('yt');t.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1" allow="autoplay;fullscreen" allowfullscreen title="Nelson Munene video"></iframe>'},{once:true})});
+var ghd=false;function loadGH(){if(ghd)return;ghd=true;var gh=document.getElementById('gh');
+ fetch('https://api.github.com/users/devnepsea/repos?sort=updated&per_page=6').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(rs){gh.innerHTML=rs.map(function(r){return '<div class="gh"><a href="'+r.html_url+'" target="_blank" rel="noopener">'+r.name+'</a><p>'+String(r.description||'No description').replace(/</g,'&lt;')+'</p></div>'}).join('')||'<p>No public repos yet.</p>'}).catch(function(){gh.innerHTML='<p><a href="https://github.com/devnepsea" style="color:var(--sky);font-weight:700">Visit my GitHub</a></p>'})}
+route(false);
+})();
+</script>
 </body>
 </html>
