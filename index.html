@@ -85,11 +85,26 @@ nav a{font-size:.78rem;font-weight:600;padding:.5rem .8rem;border-radius:40px;tr
 .proj,.qs,.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
 .pc{border:2px solid var(--ink);border-radius:22px;padding:1.5rem;transition:.3s;background:rgba(255,255,255,.75)}.pc:hover{box-shadow:8px 8px 0 var(--red);transform:translate(-4px,-4px)}.pc small{color:var(--sky);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.7rem}.pc p{font-size:.92rem;color:var(--mute)}
 .pc.g small:before{content:"G ";color:var(--red)}
-.sh{font:1.7rem Anton;text-transform:uppercase;margin:2.5rem 0 1rem}
+.media-note{font-size:.88rem;color:var(--mute);margin:-.4rem 0 1rem}.sh{font:1.7rem Anton;text-transform:uppercase;margin:2.5rem 0 1rem}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
 .tile{border-radius:22px;overflow:hidden;background:linear-gradient(135deg,var(--sky),#003E6B);aspect-ratio:4/3;position:relative;transition:.3s;cursor:pointer}.tile:hover{transform:scale(1.03) rotate(-1deg)}
 .tile video,.tile iframe{width:100%;height:100%;border:0;position:absolute;inset:0}.tile.yt{background-size:cover;background-position:center}.tile.yt:after{content:"▶";position:absolute;inset:0;display:grid;place-items:center;font-size:2.6rem;color:#fff;text-shadow:0 2px 12px #000}
-#gh{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}.gh{border:1px solid var(--line);background:var(--soft);border-radius:18px;padding:1.2rem;font-size:.88rem}.gh a{font-weight:700;color:var(--sky);font-size:1rem}
+#gh{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:1rem}
+.gh-account{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.2rem;padding:.8rem 1rem;border-left:4px solid var(--red);background:rgba(234,244,255,.72);border-radius:0 14px 14px 0}
+.gh-account strong{font:1.25rem Anton;text-transform:uppercase}.gh-account a{font-size:.82rem;font-weight:700;color:var(--sky)}
+.gh{position:relative;overflow:hidden;border:1px solid var(--line);background:linear-gradient(145deg,#fff,var(--soft));border-radius:18px;padding:1.25rem;font-size:.88rem;min-height:145px;transition:transform .25s,border-color .25s,box-shadow .25s;animation:repo-in .45s both;animation-delay:var(--delay,0ms)}
+.gh:before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--sky);transform:scaleY(0);transform-origin:bottom;transition:transform .25s}
+.gh:hover{transform:translateY(-5px);border-color:var(--sky);box-shadow:0 12px 26px rgba(10,26,47,.09)}.gh:hover:before{transform:scaleY(1)}
+.gh a{font-weight:700;color:var(--sky);font-size:1rem;overflow-wrap:anywhere}.gh p{margin:.55rem 0;color:var(--mute)}
+.gh-meta{display:flex;gap:.85rem;flex-wrap:wrap;color:var(--mute);font-size:.75rem;font-weight:600}.gh-meta span{display:inline-flex;align-items:center;gap:.25rem}
+.gh-loading{min-height:145px;border-radius:18px;background:linear-gradient(100deg,var(--soft) 25%,#fff 42%,var(--soft) 60%);background-size:200% 100%;animation:gh-shimmer 1.5s ease-in-out infinite}
+@keyframes gh-shimmer{to{background-position-x:-200%}}@keyframes repo-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.hero-portrait{width:clamp(132px,19vw,190px);aspect-ratio:1;border-radius:50%;padding:6px;margin:0 auto 1.35rem;position:relative;background:conic-gradient(from 0deg,var(--red),#fff,var(--sky),var(--red));box-shadow:0 12px 34px rgba(10,26,47,.2);animation:portrait-float 5s ease-in-out infinite}
+.hero-portrait:after{content:"";position:absolute;inset:-8px;border:1px solid rgba(255,255,255,.75);border-radius:50%;animation:portrait-ring 8s linear infinite}
+.hero-portrait img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 30%;border-radius:50%;border:4px solid #fff}
+@keyframes portrait-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes portrait-ring{to{transform:rotate(360deg)}}
+.nav-toggle{display:none}
 .q{background:rgba(234,244,255,.85);border-radius:24px;padding:1.7rem}.q b{display:block;margin-top:1rem;font-size:.85rem}
 .ph{position:relative;aspect-ratio:4/3;border-radius:22px;overflow:hidden;background:linear-gradient(135deg,var(--sky),#003E6B)}
 /* AI: full-bleed animated dark */
@@ -134,21 +149,73 @@ form{max-width:540px;margin:2rem auto;display:grid;gap:.8rem}input,textarea{font
 .soc{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}.soc a{background:rgba(255,255,255,.2);padding:.6rem 1.2rem;border-radius:40px;font-weight:600;font-size:.9rem}.soc a:hover{background:#fff;color:var(--red)}
 footer{text-align:center;padding:2rem 1rem;color:var(--mute);font-size:.85rem;background:var(--white)}
 @media(max-width:800px){.bento{grid-template-columns:1fr 1fr}.xi,.fl{grid-template-columns:1fr}.arch:nth-child(4){display:none}.in{padding:6rem 1.1rem 3rem}.stage{height:520px}}
+@media(max-width:700px){
+  .nav-toggle{position:fixed;top:14px;right:14px;z-index:61;width:48px;height:48px;border:1px solid rgba(220,230,242,.9);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:rgba(253,253,254,.94);backdrop-filter:blur(14px);box-shadow:0 6px 20px rgba(10,26,47,.12);cursor:pointer}
+  .nav-toggle span{width:19px;height:2px;border-radius:2px;background:var(--ink);transition:transform .22s,opacity .22s}
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  nav#site-nav{top:70px;left:auto;right:14px;transform:translateY(-8px);width:min(290px,calc(100vw - 28px));max-width:none;max-height:calc(100dvh - 88px);overflow-y:auto;overflow-x:hidden;white-space:normal;display:flex;flex-direction:column;align-items:stretch;gap:.2rem;padding:.65rem;border-radius:20px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,transform .2s,visibility .2s}
+  nav#site-nav.open{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+  nav#site-nav a{padding:.8rem 1rem;font-size:.9rem}
+  .hero{padding-top:6.4rem}.hero h1{font-size:clamp(2.8rem,12vw,5.4rem)}
+  .arches{gap:.55rem;margin-top:2.3rem}.arch{min-width:0;font-size:.9rem}.arch:nth-child(2){height:auto;aspect-ratio:3/4}
+  .sub{font-size:1rem}.btn{padding:.9rem 1.2rem}
+}
+@media(max-width:480px){.bento{grid-template-columns:1fr}.w2{grid-column:span 1}.arches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}.arch{width:100%;aspect-ratio:3/4;height:auto!important;border-width:3px!important}.arch:nth-child(1),.arch:nth-child(4){transform:none}.arch:nth-child(3){border-radius:50%}.hero-portrait{width:145px}.stats{grid-template-columns:1fr 1fr}.stats div{padding:.9rem .5rem}.stat{font-size:2.6rem}.stage h2{font-size:clamp(2.2rem,10vw,3.4rem)}.gh-account{align-items:flex-start;flex-direction:column;gap:.25rem}}
+@media(hover:none){.cell:hover,.svc:hover,.tile:hover,.pc:hover,.ex:hover,.xi:hover,.sc:hover{transform:none;box-shadow:none}}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* Portfolio media fixes */
+.hero-name{color:var(--red);font-weight:inherit}.hero-signature{font-size:clamp(1.2rem,2.2vw,1.7rem);margin:0 0 .8rem;letter-spacing:.02em}.hero-signature strong{font-weight:800;color:var(--red)}
+#gfx{min-height:110px}
+.gfx-placeholder{display:flex;flex-direction:column;justify-content:flex-end;gap:.35rem;padding:1.2rem;color:#fff;background:linear-gradient(145deg,#0099FF,#0A1A2F 72%);border:1px solid rgba(255,255,255,.25)}
+.gfx-placeholder:before{content:"✦";font-size:2rem;color:#fff;opacity:.9}
+.gfx-placeholder strong{font:1.15rem Anton;text-transform:uppercase}
+.gfx-placeholder span{font-size:.76rem;color:#dcecff;overflow-wrap:anywhere}
+.motion-card{display:flex;flex-direction:column;justify-content:space-between;gap:1rem;padding:1.2rem;color:#fff;background:linear-gradient(145deg,#0A1A2F,#174d78);border:1px solid rgba(255,255,255,.14);min-height:190px}
+.motion-card strong{font:1.35rem Anton;text-transform:uppercase}
+.motion-card p{font-size:.82rem;color:#dcecff}
+.motion-card a{align-self:flex-start;background:var(--red);color:white;border-radius:6px;padding:.65rem .9rem;font-size:.75rem;font-weight:700}
+.video-frame{position:absolute;inset:0;width:100%;height:100%;border:0}
+.tile.yt{display:grid;place-items:center}
+.tile.yt .play-label{position:relative;z-index:1;padding:.65rem 1rem;border-radius:30px;background:rgba(10,26,47,.8);color:white;font-weight:700}
+.wa-widget{position:fixed;right:22px;bottom:22px;z-index:80;font-family:Inter,system-ui,sans-serif}
+.wa-launch{display:flex;align-items:center;gap:.7rem;border:0;border-radius:999px;padding:.75rem 1rem;background:#16a765;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.22);cursor:pointer;font-weight:700}
+.wa-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.18);font-size:1.35rem}
+.wa-status{display:block;font-size:.68rem;font-weight:500;opacity:.92}
+.wa-panel{display:none;width:min(340px,calc(100vw - 32px));margin-bottom:.75rem;overflow:hidden;border-radius:18px;background:#fff;box-shadow:0 18px 55px rgba(10,26,47,.25);border:1px solid var(--line)}
+.wa-widget.open .wa-panel{display:block;animation:wa-pop .22s ease-out both}
+@keyframes wa-pop{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+.wa-head{padding:1rem;background:#087e53;color:#fff;display:flex;align-items:center;gap:.7rem}
+.wa-head strong{display:block}.wa-head small{opacity:.9}
+.wa-online{width:10px;height:10px;border-radius:50%;background:#7dffb2;box-shadow:0 0 0 4px rgba(125,255,178,.17)}
+.wa-body{padding:1rem;color:var(--ink)}
+.wa-bubble{padding:.85rem;border-radius:12px 12px 12px 3px;background:#eff8f2;font-size:.88rem;margin-bottom:1rem}
+.wa-body label{display:block;font-size:.75rem;font-weight:700;margin-bottom:.35rem}
+.wa-body textarea{width:100%;resize:vertical;min-height:82px;border:1px solid var(--line);border-radius:9px;padding:.75rem;font:inherit;font-size:.85rem;outline-color:#16a765}
+.wa-send{width:100%;margin-top:.7rem;border:0;border-radius:9px;padding:.8rem;background:#16a765;color:white;font-weight:700;cursor:pointer}
+.wa-close{margin-left:auto;background:transparent;border:0;color:#fff;font-size:1.35rem;cursor:pointer}
+@media(max-width:480px){.wa-widget{right:12px;bottom:12px}.wa-launch{padding:.6rem .8rem}.wa-panel{width:calc(100vw - 24px)}}
+
 </style>
 </head>
 <body>
 <div class="bgfx" aria-hidden="true"><i></i><i></i><i></i></div>
-<nav aria-label="Main"><a href="#home">Home</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#ai">AI</a><a href="#work">Work</a><a href="#aviation">Aviation</a><a href="#writing">Writing</a><a href="#sports">Sports</a><a class="cta" href="#contact">Hire me</a></nav>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation"><span></span><span></span><span></span></button>
+<nav id="site-nav" aria-label="Main"><a href="#home">Home</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#ai">AI</a><a href="#work">Work</a><a href="#aviation">Aviation</a><a href="#writing">Writing</a><a href="#sports">Sports</a><a class="cta" href="#contact">Talk to Me</a></nav>
 <div class="wipe"><i style="--n:0"></i><i style="--n:1"></i><i style="--n:2"></i><i style="--n:3"></i><i style="--n:4"></i><i style="--n:5"></i></div><div class="wl" id="wl"></div>
 
 <main>
 <!-- HOME -->
 <div class="page" id="p-home">
 <header class="hero">
-  <div class="badge">📍 Nairobi, Kenya · Open to projects</div>
+  <div class="badge">📍 Nairobi, Kenya · Open to remote projects</div>
+  <div class="hero-portrait"><img src="assets/images/nelson-profile.jpg" alt="Portrait of Nelson Lewis Munene" width="220" height="220" fetchpriority="high"></div>
+  <p class="hero-signature"><strong>Nelson Lewis Munene</strong></p>
   <h1 data-split aria-label="I design experiences, not just screens.">I design experiences, <span class="ink">not just screens.</span></h1>
-  <p class="sub">Nelson Lewis Munene: UI/UX designer, full-stack developer and SEO specialist. Head of Communications at GloboEdge Solutions, AI content creator, student pilot, author and coach.</p>
+  <p class="sub">Nelson Lewis Munene: UI/UX designer, full-stack developer and SEO specialist. Digital Marketer at GloboEdge Solutions, AI content creator, student pilot, author and coach.</p>
   <div class="row"><a href="#work" class="btn">See my work →</a><a href="assets/nelsonlewismunenecv.pdf" class="btn ghost" download>⬇ Download CV</a></div>
   <div class="arches">
     <div class="arch"><img src="assets/images/nelson-skating-coaching.jpg" alt="Nelson coaching inline skating" title="Nelson coaching inline skating" width="230" height="307" fetchpriority="high" onerror="this.remove()">Coach</div>
@@ -173,7 +240,7 @@ footer{text-align:center;padding:2rem 1rem;color:var(--mute);font-size:.85rem;ba
 <a class="ex" href="#education"><small>Education</small><h3>Ethical hacking? Python? Yes, both.</h3><p>Five Google-certified courses and a Mass Media degree.</p><span>See the certificates →</span></a>
 <a class="ex" href="#aviation"><small>Aviation</small><h3>Why is a designer learning to fly?</h3><p>Cockpit views, VFR rating and a PPL on the way.</p><span>Take off →</span></a>
 <a class="ex" href="#writing"><small>Writing</small><h3>A sci-fi novel set in Kenya</h3><p>Meet <i>Freefall</i> and my book <i>This Bird Is Crazy</i>.</p><span>Start reading →</span></a>
-<a class="ex" href="#sports"><small>Sports</small><h3>Captain on the rink, coach in the classroom</h3><p>Rollball, Baseball 5 and skating across Nairobi schools.</p><span>Meet the team →</span></a>
+<a class="ex" href="#sports"><small>Sports</small><h3>Captain on the field, coach in the classroom</h3><p>Rollball, Baseball 5 and skating across Nairobi schools.</p><span>Meet the team →</span></a>
 <a class="ex" href="#contact"><small>Contact</small><h3>Got a project that needs to stand out?</h3><p>Let's design, build and rank it.</p><span>Start a conversation →</span></a>
 </div>
 <div style="margin-top:4rem"><span class="tag">Kind words</span><h2>What people <em>say</em></h2></div>
@@ -186,10 +253,10 @@ footer{text-align:center;padding:2rem 1rem;color:var(--mute);font-size:.85rem;ba
 
 <!-- ABOUT -->
 <div class="page" id="p-about"><div class="in">
-<span class="tag">About me</span><h2>Pixels, motion <em>&amp; stories.</em></h2>
+<span class="tag">About me</span><h2>Pixels, motion <em>&amp; Coding.</em></h2>
 <div class="bento">
 <div class="cell w2 blue"><span class="ic">✏️</span><h3>Designer first</h3><p>UI/UX designer with a Mass Media &amp; Communication (IT option) degree from Mount Kenya University. I blend graphics, motion, 3D, SEO and web into interfaces that are beautiful, fast and easy to find.</p></div>
-<div class="cell dark"><span class="ic">🍎</span><div class="stat">2</div><p>GloboEdge branches: Lavington Mall &amp; The Waterfront, Karen</p></div>
+<div class="cell dark"><span class="ic">🍎</span><div class="stat">2</div><p>Digital Marketer Globoedge branches: Lavington Mall &amp; The Waterfront, Karen</p></div>
 <div class="cell red"><div class="stat">2:1</div><p>B.A. Mass Media, second class upper</p></div>
 <div class="cell"><span class="ic">🎬</span><h3>Linear &amp; non-linear</h3><p>Broadcast edits to Reels and TikToks.</p></div>
 <div class="cell"><span class="ic">🪶</span><h3>Writer</h3><p>Scripts, articles and fiction.</p></div>
@@ -205,7 +272,7 @@ footer{text-align:center;padding:2rem 1rem;color:var(--mute);font-size:.85rem;ba
 <div class="page" id="p-experience"><div class="in">
 <span class="tag">Experience</span><h2>The <em>journey</em> so far</h2>
 <div class="xp">
-<div class="xi now"><div class="when">Now <span class="live">CURRENT</span></div><div><h3>Head of Communications, GloboEdge Solutions</h3><p><b>Apple Authorized Reseller · Nairobi</b></p><ul><li>Lead brand, content and communications across Instagram, TikTok and the website</li><li>Designing the multi-page GloboEdge web redesign with Apple product landing pages</li></ul></div></div>
+<div class="xi now"><div class="when">Now <span class="live">CURRENT</span></div><div><h3>Digital Marketer, GloboEdge Solutions</h3><p><b>Apple Authorized Reseller · Nairobi</b></p><ul><li>Lead brand, content and communications across Instagram, TikTok and the website</li><li>Designing the multi-page GloboEdge web redesign with Apple product landing pages</li></ul></div></div>
 <div class="xi"><div class="when">Ongoing</div><div><h3>Skating Coach &amp; School Sport Manager</h3><p><b>Schools across Nairobi</b></p><ul><li>Potterhouse School (Runda), Kingsmead Junior (Ruaka), Presbyterian Academy (Ruaka), Jabali School, Parklands Nursery School</li></ul></div></div>
 <div class="xi"><div class="when">Ongoing</div><div><h3>Creator, INFINITY</h3><p><b>Faceless YouTube channel</b></p><ul><li>Tech, aviation and facts content, produced end to end</li></ul></div></div>
 <div class="xi"><div class="when">Earlier</div><div><h3>Website Manager &amp; SEO Optimizer, Dennis &amp; Paul Co.</h3><p><b>Auditing firm</b></p><ul><li>Managed the firm's website and optimized it for search visibility and speed</li></ul></div></div>
@@ -217,7 +284,7 @@ footer{text-align:center;padding:2rem 1rem;color:var(--mute);font-size:.85rem;ba
 <div class="page" id="p-education"><div class="in">
 <span class="tag">Education</span><h2>Always <em>learning</em></h2>
 <div class="grp">University</div>
-<div class="proj"><div class="pc"><small>Degree</small><h3>B.A. Mass Media &amp; Communication</h3><p>Mount Kenya University · IT option · Second class upper division</p></div><div class="pc"><small>Short program</small><h3>Artificial Intelligence</h3><p>Mount Kenya University · AI in education and fundamentals of AI content creation.</p></div></div>
+<div class="proj"><div class="pc"><small>Degree</small><h3>B.A. Mass Media &amp; Communication</h3><p>Mount Kenya University ·Specialized in IT · Second class upper division</p></div><div class="pc"><small>Short program</small><h3>Artificial Intelligence</h3><p>Mount Kenya University · AI in education and fundamentals of AI content creation.</p></div></div>
 <div class="grp">Google-certified courses</div>
 <div class="cg">
 <div class="pc g"><small>Google certified</small><h3>🛡️ Ethical Hacking</h3><p>Security mindset for building safer sites.</p></div>
@@ -256,9 +323,10 @@ footer{text-align:center;padding:2rem 1rem;color:var(--mute);font-size:.85rem;ba
 <div class="pc"><small>Video series</small><h3>DP Farms: Our Coffee Journey</h3><p>From coffee varieties and seedlings to seed beds.</p></div>
 <div class="pc"><small>YouTube</small><h3>INFINITY</h3><p>Faceless channel on tech, aviation and facts.</p></div>
 </div>
-<div class="sh">Graphics</div><div class="grid" id="gfx"></div>
+<div class="sh">Graphics</div><p class="media-note">Selected graphic design work.</p><div class="grid" id="gfx" aria-label="Graphic design portfolio"></div>
 <div class="sh">Motion graphics</div>
-<div class="grid"><div class="tile"><video controls preload="none" src="assets/videos/motion1.mp4"></video></div><div class="tile"><video controls preload="none" src="assets/videos/motion2.mp4"></video></div><div class="tile"><video controls preload="none" src="assets/videos/motion3.mp4"></video></div><div class="tile"><video controls preload="none" src="assets/videos/motion4.mp4"></video></div></div>
+
+<div class="grid" id="motion-videos" aria-label="Motion graphics videos"></div>
 <div class="sh">Videos</div>
 <div class="grid"><div class="tile yt" data-yt="jSYkJ47t5bE"></div><div class="tile yt" data-yt="s2bJMsIy7oQ"></div><div class="tile yt" data-yt="xS2IMsD7PQk"></div><div class="tile yt" data-yt="4tro9Av8aQs"></div></div>
 <div class="sh">Live from GitHub</div><div id="gh"></div>
@@ -316,16 +384,16 @@ footer{text-align:center;padding:2rem 1rem;color:var(--mute);font-size:.85rem;ba
 
 <!-- CONTACT -->
 <div class="page" id="p-contact"><div class="in">
-<h2>Let's build something loud.</h2><p>A brand, a website, a story or a school skating program? Let's talk.</p>
+<h2>Let's build something loud.</h2><p>A brand, a website, a story or a school skating program? Let's Talk.</p>
 <form action="https://formspree.io/f/xjgazvgy" method="POST"><input type="text" name="name" placeholder="Your name" required><input type="email" name="email" placeholder="Your email" required><textarea name="message" rows="4" placeholder="Tell me about your project" required></textarea><button class="btn" type="submit">Send message →</button></form>
-<div class="soc"><a href="mailto:lewisnepsea@gmail.com">✉ lewisnepsea@gmail.com</a><a href="https://github.com/devnepsea" rel="noopener" target="_blank">GitHub</a><a href="assets/nelsonlewismunenecv.pdf" download>⬇ CV</a></div>
+<div class="soc"><a href="mailto:lewisnepsea@gmail.com">✉ lewisnepsea@gmail.com</a><a href="https://github.com/devnepsea" rel="noopener" target="_blank">GitHub · devnepsea</a><a href="https://github.com/xamarinemunene-droid" rel="noopener" target="_blank">GitHub · xamarinemunene-droid</a><a href="assets/nelsonlewismunenecv.pdf" download>⬇ CV</a></div>
 </div></div>
 </main>
-<footer>© 2026 Nelson Lewis Munene · Designed in Nairobi</footer>
+<footer>© 2026 all rights reserved· Designed by Nelson Lewis Munene</footer>
 
 <script>
 (function(){
-var T={home:'Home',about:'About',experience:'Experience',education:'Education',ai:'AI Lab',work:'Work',aviation:'Aviation',writing:'Writing',sports:'Sports',contact:'Hire me'},
+var T={home:'Home',about:'About',experience:'Experience',education:'Education',ai:'AI Lab',work:'Work',aviation:'Aviation',writing:'Writing',sports:'Sports',contact:'Talk to Me'},
 M={home:'stripes',about:'blinds',experience:'slash',education:'circle',ai:'circle',work:'blinds',aviation:'slash',writing:'blinds',sports:'stripes',contact:'circle'},
 cur=null,wipe=document.querySelector('.wipe'),wl=document.getElementById('wl');
 document.addEventListener('click',function(e){if(e.target.closest('a[href^="#"]')){wipe.style.setProperty('--cx',e.clientX+'px');wipe.style.setProperty('--cy',e.clientY+'px')}});
@@ -345,12 +413,113 @@ function route(anim){var id=location.hash.slice(1)||'home';if(id===cur)return;
 window.addEventListener('hashchange',function(){route(true)});
 /* crawl: duplicate the school cards for a seamless loop */
 var tr=document.getElementById('track');tr.innerHTML+=tr.innerHTML;
-var g=document.getElementById('gfx');for(var i=1;i<=8;i++){var d=document.createElement('div');d.className='tile';d.innerHTML='<img src="assets/images/design'+i+'.'+(i<4?'jpg':'png')+'" alt="Design work '+i+' by Nelson Munene" title="Design '+i+'" loading="lazy" decoding="async" onerror="this.parentNode.remove()">';g.appendChild(d)}
-document.querySelectorAll('[data-yt]').forEach(function(t){var id=t.dataset.yt;t.style.backgroundImage='url(https://i.ytimg.com/vi/'+id+'/hqdefault.jpg)';t.addEventListener('click',function(){t.classList.remove('yt');t.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1" allow="autoplay;fullscreen" allowfullscreen title="Nelson Munene video"></iframe>'},{once:true})});
+/* Graphics: keep the section visible even before image files are supplied.
+   Put design1.jpg, design2.jpg, design3.jpg, design4.png ... design8.png
+   in assets/images/ to replace the labelled placeholders automatically. */
+var g=document.getElementById('gfx');
+for(var i=1;i<=8;i++){
+ var d=document.createElement('div');d.className='tile';
+ var img=document.createElement('img');img.src='assets/images/design'+i+'.'+(i<4?'jpg':'png');
+ img.alt='Graphic design work '+i+' by Nelson Munene';img.loading='lazy';img.decoding='async';
+ img.onerror=function(){var tile=this.parentNode;tile.classList.add('gfx-placeholder');var n=tile.dataset.slot;
+  var title=document.createElement('strong');title.textContent='Graphic design '+n;
+  var note=document.createElement('span');note.textContent='Add assets/images/design'+n+(Number(n)<4?'.jpg':'.png');
+  tile.appendChild(title);tile.appendChild(note);this.remove()};
+ d.dataset.slot=String(i);d.appendChild(img);g.appendChild(d);
+}
+/* Use one reliable YouTube embed helper for both the motion and general video areas.
+   Replace the URL strings below with your own YouTube video or Shorts links. */
+function youtubeId(url){
+ if(!url)return '';
+ var m=url.match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/))([A-Za-z0-9_-]{11})/);
+ return m?m[1]:'';
+}
+function mountYouTube(tile,url,title){
+ var id=youtubeId(url);
+ if(!id){tile.classList.add('motion-card');var h=document.createElement('strong');h.textContent=title;
+  var p=document.createElement('p');p.textContent='YouTube link will be added here. Send the video URL to populate this player.';
+  tile.appendChild(h);tile.appendChild(p);return}
+ tile.classList.add('yt');tile.style.backgroundImage='url(https://i.ytimg.com/vi/'+id+'/hqdefault.jpg)';
+ var label=document.createElement('span');label.className='play-label';label.textContent='▶ Play video';tile.appendChild(label);
+ tile.addEventListener('click',function(){
+  tile.textContent='';tile.style.backgroundImage='none';
+  var frame=document.createElement('iframe');frame.className='video-frame';
+  frame.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';
+  frame.title=title;frame.loading='lazy';frame.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+  frame.allowFullscreen=true;tile.appendChild(frame);
+ },{once:true});
+}
+var motionLinks=[
+ 'https://youtu.be/D1M_ZMMNpjI?si=ENvtYkwGeUbKgq2z',
+ 'https://youtu.be/bNIVLm-bAB4?si=VPihl0LKFwrlVQtn',
+ 'https://youtu.be/0XPd6N-QQy4?si=wbb4TdnzOXBB9k65',
+ 'https://youtu.be/yTHOl5gsZto?si=bNSTLZkHejbJx9co'
+];
+var mv=document.getElementById('motion-videos');
+motionLinks.forEach(function(url,i){var tile=document.createElement('div');tile.className='tile';mountYouTube(tile,url,'Motion graphics project '+(i+1));mv.appendChild(tile)});
+document.querySelectorAll('[data-yt]').forEach(function(tile,i){
+ var id=tile.dataset.yt;mountYouTube(tile,'https://www.youtube.com/watch?v='+id,'Video '+(i+1));
+});
 var ghd=false;function loadGH(){if(ghd)return;ghd=true;var gh=document.getElementById('gh');
- fetch('https://api.github.com/users/devnepsea/repos?sort=updated&per_page=6').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(rs){gh.innerHTML=rs.map(function(r){return '<div class="gh"><a href="'+r.html_url+'" target="_blank" rel="noopener">'+r.name+'</a><p>'+String(r.description||'No description').replace(/</g,'&lt;')+'</p></div>'}).join('')||'<p>No public repos yet.</p>'}).catch(function(){gh.innerHTML='<p><a href="https://github.com/devnepsea" style="color:var(--sky);font-weight:700">Visit my GitHub</a></p>'})}
-route(false);
+ gh.innerHTML='<div class="gh-loading" aria-hidden="true"></div><div class="gh-loading" aria-hidden="true"></div><div class="gh-loading" aria-hidden="true"></div><div class="gh-loading" aria-hidden="true"></div>';
+ var accounts=['devnepsea','xamarinemunene-droid'];
+ Promise.all(accounts.map(function(user){return fetch('https://api.github.com/users/'+encodeURIComponent(user)+'/repos?sort=updated&per_page=6').then(function(r){if(!r.ok)throw new Error('GitHub request failed');return r.json()}).then(function(repos){return {user:user,repos:repos}}).catch(function(){return {user:user,repos:null}})})).then(function(results){
+  gh.textContent='';
+  results.forEach(function(result){
+   var heading=document.createElement('div');heading.className='gh-account';
+   var label=document.createElement('strong');label.textContent=result.user;
+   var profile=document.createElement('a');profile.href='https://github.com/'+result.user;profile.target='_blank';profile.rel='noopener noreferrer';profile.textContent='View profile ↗';
+   heading.appendChild(label);heading.appendChild(profile);gh.appendChild(heading);
+   if(!result.repos){var err=document.createElement('p');err.textContent='Repositories could not be loaded right now.';gh.appendChild(err);return}
+   if(!result.repos.length){var empty=document.createElement('p');empty.textContent='No public repositories to display yet.';gh.appendChild(empty);return}
+   result.repos.forEach(function(repo,index){
+    var card=document.createElement('article');card.className='gh';card.style.setProperty('--delay',(index*55)+'ms');
+    var link=document.createElement('a');link.href=repo.html_url;link.target='_blank';link.rel='noopener noreferrer';link.textContent=repo.name;
+    var desc=document.createElement('p');desc.textContent=repo.description||'A project from my GitHub workspace.';
+    var meta=document.createElement('div');meta.className='gh-meta';
+    [['★',repo.stargazers_count+' stars'],['⑂',repo.forks_count+' forks'],['●',repo.language||'Code']].forEach(function(item){var span=document.createElement('span');span.textContent=item[0]+' '+item[1];meta.appendChild(span)});
+    card.appendChild(link);card.appendChild(desc);card.appendChild(meta);gh.appendChild(card);
+   });
+  });
+ });
+}
+ var nav=document.getElementById('site-nav'),toggle=document.querySelector('.nav-toggle');
+ function closeNav(){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open navigation')}
+ toggle.addEventListener('click',function(){var open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Close navigation':'Open navigation');nav.classList.toggle('open',open)});
+ nav.addEventListener('click',function(e){if(e.target.closest('a'))closeNav()});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeNav()});
+ window.addEventListener('resize',function(){if(window.innerWidth>700)closeNav()});
+ route(false);
 })();
 </script>
+
+<!-- Floating WhatsApp contact widget -->
+<div class="wa-widget" id="wa-widget">
+ <div class="wa-panel" id="wa-panel" role="dialog" aria-label="WhatsApp inquiry">
+  <div class="wa-head"><span class="wa-online"></span><div><strong>Nelson Lewis Munene</strong><small>Online · Chat now</small></div><button class="wa-close" type="button" aria-label="Close chat">×</button></div>
+  <div class="wa-body"><div class="wa-bubble">Hi there! 👋 Thanks for reaching out. What would you like to work on?</div>
+   <label for="wa-inquiry">Enter your inquiry</label>
+   <textarea id="wa-inquiry" placeholder="Tell me briefly what you need..." maxlength="1000"></textarea>
+   <button class="wa-send" type="button">Continue to WhatsApp ↗</button>
+  </div>
+ </div>
+ <button class="wa-launch" type="button" aria-expanded="false" aria-controls="wa-panel">
+  <span class="wa-icon">☏</span><span>Chat now<span class="wa-status">● Online on WhatsApp</span></span>
+ </button>
+</div>
+<script>
+(function(){
+ var widget=document.getElementById('wa-widget'),launch=widget.querySelector('.wa-launch'),close=widget.querySelector('.wa-close'),send=widget.querySelector('.wa-send'),field=document.getElementById('wa-inquiry');
+ function setOpen(open){widget.classList.toggle('open',open);launch.setAttribute('aria-expanded',String(open));}
+ launch.addEventListener('click',function(){setOpen(!widget.classList.contains('open'));});
+ close.addEventListener('click',function(){setOpen(false);});
+ send.addEventListener('click',function(){
+  var message=field.value.trim()||'Hi Nelson, I would like to make an inquiry.';
+  window.open('https://wa.me/254797912293?text='+encodeURIComponent(message),'_blank','noopener');
+ });
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')setOpen(false)});
+})();
+</script>
+
 </body>
 </html>
